@@ -5,19 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BVL Morning Brief</title>
 <style>
-  :root {
-    --navy: #0d1b3e;
-    --navy-card: #132050;
-    --navy-border: #1e2f60;
-    --mint: #91eebe;
-    --mint-dim: rgba(145,238,190,0.12);
-    --mint-border: rgba(145,238,190,0.25);
-    --purple: #7b6cf6;
-    --white: #ffffff;
-    --white-70: rgba(255,255,255,0.7);
-    --white-40: rgba(255,255,255,0.4);
-    --white-15: rgba(255,255,255,0.08);
-  }
+  :root { --navy: #0d1b3e; --navy-card: #132050; --navy-border: #1e2f60; --mint: #91eebe; --mint-dim: rgba(145,238,190,0.12); --mint-border: rgba(145,238,190,0.25); --purple: #7b6cf6; --white: #ffffff; --white-70: rgba(255,255,255,0.7); --white-40: rgba(255,255,255,0.4); --white-15: rgba(255,255,255,0.08); }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--navy); color: var(--white); min-height: 100vh; }
   .mosaic { position: fixed; top: 0; right: 0; width: 180px; height: 160px; pointer-events: none; opacity: 0.15; z-index: 0; display: grid; grid-template-columns: repeat(9, 18px); grid-template-rows: repeat(8, 18px); gap: 2px; padding: 12px; }
@@ -69,217 +57,240 @@
 </style>
 </head>
 <body>
-
 <div class="mosaic" id="mosaic"></div>
-
 <div class="topbar">
   <div class="topbar-inner">
     <div class="brand">
-      <img class="brand-mark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAKCCAYAAABBBWgoAAAACXBIWXMAACxKAAAsSgF3enRNAAAUTUlEQVR4nO3dz3UbV5rG4c8+2mBVRgRUBlQGYkcgZSBOBKOOQHQEpiMQFEFTEQhazqrJCAaKAKwVZqdZgDyW3RbFPwC+uvd7nnN42n3ci3f563tRVT99/fo1AACo4+fsAQAAHJYABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABTzLHsAtGQ9bl5ExHn2DiAiIi4j4vqb/766+bueD7PLjEHQip++fv2avQGasR43JxHxKXsHcC9jbCPxMrZheDkfZsvMQTAVAhAeQABCF64iYnn7Nx9m13f+r6FDAhAeQABClz5HxEVEXMyH2Sp5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EYAAAMUIQACAYp5lD6Apy+wBAN9YZg+AVv309evX7A0AAByQK2AAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKCY/weIDNHXwdDCAgAAAABJRU5ErkJggg==" alt="BVL">
-      <div class="brand-text">
-        <h1>BVL Morning Brief</h1>
-        <div class="tagline">Broadview Labs Intelligence</div>
-      </div>
+      <img class="brand-mark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAKCCAYAAABBBWgoAAAACXBIWXMAACxKAAAsSgF3enRNAAAUTUlEQVR4nO3dz3UbV5rG4c8+2mBVRgRUBlQGYkcgZSBOBKOOQHQEpiMQFEFTEQhazqrJCAaKAKwVZqdZgDyW3RbFPwC+uvd7nnN42n3ci3f563tRVT99/fo1AACo4+fsAQAAHJYABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABTzLHsAtGQ9bl5ExHn2DiAiIi4j4vqb/666+bueD7PLjEHQip++fv2avQGasR43JxHxKXsHcC9jbCPxMrZheDkfZsvMQTAVAhAeQABCF64iYnn7Nx9m13f+r6FDAhAeQABClz5HxEVEXMyH2Sp5CxyEAIQHEIDQvauIWETEwskgPfMUMAD84TgifguI9XrcXNz8nz7ojgAEgL/3KiI+rcfNaj1uTtfj5pfsQbArAhAA7nYUEe8jYrUeN2dCkB4IQAC4nyEi3sVNCCZvgScRgADwMENEvLu9Gs4eA48hAAHgcY4i4v163CxvvhIEzRCAAPA0LyPi364FaYkABIDdebceN5dOA2mBAASA3TkOp4E0QAACwO69u/lt4PPsIfB3BCAA7MfLiLj0NRGmSAACwP4Msf2ayNvsIfAtAQgA+/fbetysskfALQEIAIfx5uYpYZ+SI50ABIDDEYMAAAB0SURBVIQHEIDQvauIWETEwskgPfMUMAD84TgifguI9XrcXNz8nz7ojgAEgL/3KiI+rcfNaj1uTtfj5pfsQbArAhAA7nYUEe8jYrUeN2dCkB4IQAC4nyEi3sVNCCZvgScRgADwMENEvLu9Gs4eA48hAAHgcY4i4v163CxvvhIEzRCAAPA0LyPi364FaYkABIDdebceN5dOA2mBAASA3TkOp4E0QAACwO69u/lt4PPsIfB3BCAA7MfLiLj0NRGmSAACwP4Msf2ayNvsIfAtAQgA+/fbetyskdAKAAAAAElFTkSuQmCC" alt="BVL">
+      <div class="brand-text"><h1>BVL Morning Brief</h1><div class="tagline">Broadview Labs Intelligence</div></div>
     </div>
-    <div class="date-badge" id="dateBadge"></div>
+    <div class="date-badge">Wed Jun 3, 2026</div>
   </div>
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('bausch')">Bausch Health <span class="count">1</span></button>
-    <button class="tab" onclick="switchTab('ai')">AI for BVL <span class="count">1</span></button>
-    <button class="tab" onclick="switchTab('xifaxan')">Xifaxan <span class="count">1</span></button>
+    <button class="tab active" onclick="switchTab('bausch')">Bausch Health <span class="count">3</span></button>
+    <button class="tab" onclick="switchTab('ai')">AI for BVL <span class="count">5</span></button>
+    <button class="tab" onclick="switchTab('xifaxan')">Xifaxan <span class="count">4</span></button>
     <button class="tab" onclick="switchTab('weekly')">Best Of Week</button>
   </div>
 </div>
-
 <div class="content">
 
-  <!-- BAUSCH -->
+  <!-- BAUSCH PANEL -->
   <div class="panel active" id="panel-bausch">
     <div class="day-block">
       <div class="day-header">
-        <div class="day-label">May 31, 2026 <span class="weekday">Sunday</span></div>
+        <div class="day-label">June 3, 2026 <span class="weekday">Wednesday</span></div>
         <span class="today-badge">Today</span>
       </div>
+
       <div class="story-card open">
-        <div class="story-card-header" onclick="toggle(this)"><span class="section-label">Top Stories</span><span class="chevron">â–¼</span></div>
-        <div class="story-card-body"><ul>
-          <li><strong>Bausch + Lomb launches PreserVision AREDS3 in the U.S.</strong> â€” Adds B-vitamin complex to AREDS2 stack; 2x better absorption claim. Now at Walmart, Target, Walgreens, Amazon. Full national rollout by June 2026. <a href="https://ir.bausch.com/press-releases/bausch-lomb-launches-preservision-areds3tm-eye-vitamins-united-states" target="_blank">Bausch + Lomb IR â†—</a></li>
-          <li><strong>Bausch Health beats Q1 2026 earnings â€” 12th consecutive growth quarter.</strong> Revenue $2.52B vs. $2.42B estimate; EPS $0.78 vs. $0.68. EBITDA up 27% YoY. Full-year guidance $5.25â€“$5.4B. <a href="https://www.investing.com/news/transcripts/earnings-call-transcript-bausch-health-beats-q1-2026-earnings-estimates-93CH-4647295" target="_blank">Investing.com â†—</a></li>
-          <li><strong>Solta Medical earns AAA Well-Known Trademark Certification for Thermage in China.</strong> Anti-counterfeit brand protection in the world's largest aesthetic device market. Follows December 2025 Shibo Group acquisition. <a href="https://www.prnewswire.com/news-releases/bausch-healths-aesthetic-business-solta-medical-earns-prestigious-trademark-certification-of-thermage-in-china-302784868.html" target="_blank">PR Newswire â†—</a></li>
-          <li><strong>New director Eiry W. Roberts, M.D. joins the board.</strong> Former CMO at Neurocrine Biosciences; chairs Science and Technology Committee. <a href="https://www.prnewswire.com/news-releases/bausch-health-announces-2026-annual-meeting-of-shareholder-results-302776740.html" target="_blank">PR Newswire â†—</a></li>
-          <li><strong>Bausch + Lomb raises 2026 guidance to $5.42â€“$5.52B; presents 40+ data sets at ARVO.</strong> <a href="https://simplywall.st/stocks/us/healthcare/nyse-blco/bausch-lomb/news/will-stronger-2026-guidance-and-arvo-data-shift-bausch-lombs/amp" target="_blank">Simply Wall St â†—</a></li>
-        </ul></div>
-      </div>
-      <div class="story-card open">
-        <div class="story-card-header" onclick="toggle(this)"><span class="section-label">Brand Highlights</span><span class="chevron">â–¼</span></div>
+        <div class="story-card-header" onclick="toggle(this)">
+          <span class="section-label">Top Stories</span>
+          <span class="chevron">&#9660;</span>
+        </div>
         <div class="story-card-body">
-          <h4>Bausch + Lomb</h4><ul>
-            <li>Q1 revenue $1.244B, up 9% YoY. Guidance raised to $5.42â€“$5.52B. <a href="https://www.sec.gov/Archives/edgar/data/0001860742/000186074226000060/ex991q1-2026.htm" target="_blank">SEC 8-K â†—</a></li>
-            <li>PreserVision AREDS3 in national retail â€” backed by 20+ human studies, ~30,000 participants. <a href="https://www.optometrytimes.com/view/bausch-lomb-launches-preservision-areds3-eye-vitamins-in-us" target="_blank">Optometry Times â†—</a></li>
-          </ul>
-          <h4>Solta Medical</h4><ul>
-            <li>Q1 revenues up 25% YoY ($140M); Asia Pacific leading. Shibo integrated as direct distribution channel in China. <a href="https://finance.yahoo.com/news/bausch-healths-aesthetics-business-solta-120000418.html" target="_blank">Yahoo Finance â†—</a></li>
-          </ul>
-          <h4>Ortho Dermatologics</h4><ul>
-            <li>Biafine launched online in the U.S. April 14. ASPIRE HIGHER scholarship open through June 10. <a href="https://www.prnewswire.com/news-releases/bausch-healths-dermatology-business-ortho-dermatologics-announces-the-launch-of-biafine-an-iconic-french-skincare-product-through-convenient-online-ordering-302739556.html" target="_blank">PR Newswire â†—</a></li>
-          </ul>
-          <h4>Salix</h4><ul>
-            <li>No major product news. Contributed to strong Q1 results. Xifaxan patent defense ongoing â€” January 2026 PTAB ruling upheld Bausch patent post-Federal Circuit remand.</li>
+          <ul>
+            <li><strong>B+L R&amp;D Teach-In signals contact lens pipeline push (June 1):</strong> CMO Yehia Hashad led a public webinar highlighting two pipeline assets: a bioactive contact lens using polymerized hyaluronic acid (described as first-of-its-kind) and a silicone hydrogel daily lens designed to slow myopia progression. This is a deliberate investor/market signaling move ahead of the Goldman Sachs Healthcare Conference. <a href="https://www.stocktitan.net/news/BLCO/bausch-lomb-announces-second-r-d-teach-in-fhrybpmfj3i6.html" target="_blank">StockTitan &#8599;</a></li>
+            <li><strong>B+L launches Blink Triple Care Preservative Free (late May/early June):</strong> New multi-dose PF dry eye drop now rolling out at Amazon, CVS, Target, and Walgreens through end of June. Extends the Blink franchise into the growing preservative-free OTC segment. <a href="https://www.biospace.com/press-releases/bausch-lomb-launches-blink-triple-care-preservative-free-lubricant-eye-drops-in-the-united-states" target="_blank">BioSpace &#8599;</a> | <a href="https://www.optometrytimes.com/view/bausch-lomb-launches-preservative-free-version-of-blink-triple-care-eye-drops" target="_blank">Optometry Times &#8599;</a></li>
+            <li><strong>Solta Medical earns Thermage AAA Trademark in China (May 28):</strong> China Trademark Association granted Thermage the AAA Well-Known Trademark Certification â€” only 217 brands in mainland China hold it. Follows Solta's acquisition of its Chinese distributor (Shibo group) in late 2025. Significant for brand protection and premium positioning in the Chinese aesthetics market. <a href="https://www.prnewswire.com/news-releases/bausch-healths-aesthetic-business-solta-medical-earns-prestigious-trademark-certification-of-thermage-in-china-302784868.html" target="_blank">PR Newswire &#8599;</a></li>
+            <li><strong>BHC Q1 2026 earnings beat â€” 12th consecutive quarter of growth:</strong> Revenue $2.52B (vs. $2.42B forecast); EPS $0.78 (vs. $0.68). Adjusted EBITDA up 27% YoY. Salix and Solta led segment performance. Full-year guidance: $5.25â€“5.40B revenue. <a href="https://www.investing.com/news/transcripts/earnings-call-transcript-bausch-health-beats-q1-2026-earnings-estimates-93CH-4647295" target="_blank">Investing.com &#8599;</a> | <a href="https://www.fool.com/earnings/call-transcripts/2026/04/29/bausch-health-bhc-q1-2026-earnings-transcript/" target="_blank">Motley Fool transcript &#8599;</a></li>
           </ul>
         </div>
       </div>
-      <div class="story-card">
-        <div class="story-card-header" onclick="toggle(this)"><span class="section-label">On the Radar</span><span class="chevron">â–¼</span></div>
-        <div class="story-card-body"><ul>
-          <li><strong>PreserVision AREDS3 retail ramp</strong> â€” Full national shelf placement by June 2026. Watch consumer campaign spend and competitor AMD supplement responses.</li>
-          <li><strong>Solta China momentum</strong> â€” Shibo integrated + Thermage trademark certified. China aesthetics demand commentary is a key H2 2026 indicator.</li>
-          <li><strong>Bausch Health debt load</strong> â€” ~$20.23B in debt. EBITDA narrative holding, but Xifaxan generic pressure or rate shifts warrant monitoring.</li>
-        </ul></div>
+
+      <div class="story-card open">
+        <div class="story-card-header" onclick="toggle(this)">
+          <span class="section-label">Brand Highlights</span>
+          <span class="chevron">&#9660;</span>
+        </div>
+        <div class="story-card-body">
+          <h4>Bausch + Lomb</h4>
+          <ul>
+            <li>June 1 R&amp;D teach-in detailed myopia-control and bioactive contact lens pipeline; CEO Brent Saunders and CMO Hashad presenting at Goldman Sachs 47th Annual Healthcare Conference in Miami on June 9.</li>
+            <li>Blink Triple Care PF launch expanding OTC dry eye footprint across major retail channels.</li>
+            <li><a href="https://ir.bausch.com/press-releases/bausch-lomb-highlight-company-transformation-and-growth-strategy-investor-day" target="_blank">Investor Day announced &#8599;</a> to highlight company transformation and growth strategy â€” date TBC.</li>
+          </ul>
+          <h4>Solta Medical</h4>
+          <ul>
+            <li>Thermage AAA China trademark win strengthens IP position following the Shibo distribution acquisition. China remains a key growth market for aesthetics.</li>
+            <li>Thermage has now completed 5 million treatments globally (milestone announced Sept 2025 but still being cited in recent coverage). <a href="https://www.dermatologytimes.com/view/thermage-surpasses-5-million-aesthetic-treatments-solta-medical-announces" target="_blank">Dermatology Times &#8599;</a></li>
+          </ul>
+          <h4>Ortho Dermatologics</h4>
+          <ul>
+            <li>Biafine Skin Recovery Emulsion now available via Amazon and the Ortho Dermatologics Direct platform (launched April 14) â€” French heritage skincare brand entering U.S. e-commerce channel.</li>
+            <li>2026 ASPIRE HIGHER Scholarship applications close June 10 â€” six $10K awards for students with dermatologic conditions. <a href="https://www.prnewswire.com/news-releases/bausch-health-announces-ortho-dermatologics-2026-aspire-higher-scholarship-program-302725288.html" target="_blank">PR Newswire &#8599;</a></li>
+          </ul>
+          <h4>Salix Pharmaceuticals</h4>
+          <ul>
+            <li>No significant breaking news in the last 72 hours. Segment performance cited as a driver of BHC's Q1 earnings beat; watch for any Xifaxan competitive or regulatory updates.</li>
+          </ul>
+        </div>
       </div>
+
+      <div class="story-card">
+        <div class="story-card-header" onclick="toggle(this)">
+          <span class="section-label">On the Radar</span>
+          <span class="chevron">&#9660;</span>
+        </div>
+        <div class="story-card-body">
+          <ul>
+            <li><strong>Goldman Sachs Healthcare Conference (June 9):</strong> B+L CEO Saunders and CMO Hashad in a fireside chat. Likely to reinforce pipeline messaging from the June 1 R&amp;D teach-in. Worth monitoring for any off-script disclosures or guidance commentary.</li>
+            <li><strong>Solta China strategy:</strong> The combination of the Shibo acquisition (direct distribution) + Thermage trademark win suggests an accelerated push in China. Watch for pricing/volume disclosures in Q2 results.</li>
+            <li><strong>BHC separation narrative:</strong> With B+L trading separately (BLCO) and Solta previously discussed as a potential spin, investor attention remains on whether BHC's portfolio structure changes. No new developments this week, but worth watching given the earnings momentum.</li>
+          </ul>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- AI -->
+  <!-- AI PANEL -->
   <div class="panel" id="panel-ai">
     <div class="day-block">
       <div class="day-header">
-        <div class="day-label">May 31, 2026 <span class="weekday">Sunday</span></div>
+        <div class="day-label">June 3, 2026 <span class="weekday">Wednesday</span></div>
         <span class="today-badge">Today</span>
       </div>
+
       <div class="story-card open">
-        <div class="story-card-header" onclick="toggle(this)"><span class="section-label">Must-Know Today</span><span class="chevron">â–¼</span></div>
-        <div class="story-card-body"><ul>
-          <li><strong>Anthropic ships Claude Opus 4.8 â€” Mythos imminent.</strong> Best agentic benchmark performance; 4x less likely to let issues pass unmentioned. Pricing unchanged. Mythos â€” most capable model class â€” weeks away. <a href="https://www.anthropic.com/news/claude-opus-4-8" target="_blank">Anthropic â†—</a></li>
-          <li><strong>OpenAI launches self-serve Ads Manager inside ChatGPT.</strong> Targeting $2.5B in ad revenue. Clients asking about AI search visibility now need a ChatGPT ad strategy. <a href="https://martech.org/the-latest-ai-powered-martech-news-and-releases/" target="_blank">MarTech â†—</a></li>
-          <li><strong>Google AI Overviews hit 25% of all searches â€” most teams aren't tracking it.</strong> Only 22% of marketing teams monitor AI search visibility. AI is now the first filter before HCPs or patients see a page. <a href="https://www.contentmarketing.ai/blog/industry/ai-in-marketing-roundup-may-2026/" target="_blank">contentmarketing.ai â†—</a></li>
-        </ul></div>
-      </div>
-      <div class="story-card open">
-        <div class="story-card-header" onclick="toggle(this)"><span class="section-label">Tools &amp; Creative AI</span><span class="chevron">â–¼</span></div>
-        <div class="story-card-body"><ul>
-          <li><strong>Adobe Firefly Creative Agent</strong> â€” Orchestrates generative AI across Firefly suite. IP indemnification makes it safer than Midjourney for regulated client work. <a href="https://news.adobe.com/news/2026/04/adobe-new-creative-agent" target="_blank">Adobe â†—</a></li>
-          <li><strong>Canva AI 2.0 + Brand Intelligence</strong> â€” Enforces brand consistency across AI-generated outputs. Useful for pharma/consumer health clients needing fast, compliant assets. <a href="https://vajraglobal.com/blogs/ai-assisted-design-in-2026-how-agencies-are-using-generative-tools-without-losing-creative-quality/" target="_blank">Vajra Global â†—</a></li>
-          <li><strong>Claude Managed Agents â€” Dreaming, Outcomes, Multi-agent Orchestration (May 6).</strong> The architecture for a real BVL internal ops agent. <a href="https://9to5mac.com/2026/05/07/anthropic-updates-claude-managed-agents-with-three-new-features/" target="_blank">9to5Mac â†—</a></li>
-        </ul></div>
-      </div>
-      <div class="story-card">
-        <div class="story-card-header" onclick="toggle(this)"><span class="section-label">Pharma &amp; Healthcare AI</span><span class="chevron">â–¼</span></div>
-        <div class="story-card-body"><ul>
-          <li><strong>AI content adoption scaling in pharma.</strong> Copywriting leads (50%); campaign optimization and creative at 40% each. The conversation to be having with clients now. <a href="https://www.mmm-online.com/news/the-state-of-genai-in-pharma-marketing-ai-trust-pharma-brands/" target="_blank">MMM Online â†—</a></li>
-          <li><strong>AI-powered MLR review is live.</strong> Automated reference anchoring, PAAB checks, differentiated approval workflows. BVL can pitch faster campaign production with compliant guardrails. <a href="https://www.indegene.com/what-we-think/blogs/ai-powered-mlr-review" target="_blank">Indegene â†—</a></li>
-          <li><strong>Trust is the pharma AI differentiator.</strong> Frame AI-assisted work as "human-reviewed, AI-accelerated." <a href="https://www.mmm-online.com/news/the-state-of-genai-in-pharma-marketing-ai-trust-pharma-brands/" target="_blank">MMM Online â†—</a></li>
-        </ul></div>
-      </div>
-      <div class="story-card">
-        <div class="story-card-header" onclick="toggle(this)"><span class="section-label">Ops &amp; Automation</span><span class="chevron">â–¼</span></div>
-        <div class="story-card-body"><ul>
-          <li><strong>n8n at $1B valuation, 180K+ GitHub stars.</strong> Right infrastructure layer for BVL ops â€” especially for sensitive health client data. <a href="https://n8n.io/" target="_blank">n8n.io â†—</a></li>
-          <li><strong>AdRoll MCP server</strong> â€” MCP becoming the standard for live data connections to AI agents. Watch which client platforms expose MCP endpoints. <a href="https://martech.org/the-latest-ai-powered-martech-news-and-releases/" target="_blank">MarTech â†—</a></li>
-        </ul></div>
-      </div>
-      <div class="story-card">
-        <div class="story-card-header" onclick="toggle(this)"><span class="section-label">Policy &amp; Risk</span><span class="chevron">â–¼</span></div>
-        <div class="story-card-body"><ul>
-          <li><strong>FDA eased oversight of AI-enabled clinical decision support software (January 2026).</strong> Low-risk AI health software no longer requires premarket clearance. The line between "content" and "device" is shifting. <a href="https://www.orrick.com/en/Insights/2026/01/FDA-Eases-Oversight-for-AI-Enabled-Clinical-Decision-Support-Software-and-Wearables" target="_blank">Orrick â†—</a></li>
-          <li><strong>PAAB building its own AI regulatory review model.</strong> Canadian pharma agencies ahead of this get a production speed advantage. <a href="https://www.paab.ca/resources/ai-in-pharma-working-group/" target="_blank">PAAB â†—</a></li>
-        </ul></div>
-      </div>
-      <div class="story-card">
-        <div class="story-card-header" onclick="toggle(this)"><span class="section-label">BVL Prompt of the Day</span><span class="chevron">â–¼</span></div>
+        <div class="story-card-header" onclick="toggle(this)">
+          <span class="section-label">Must-Know Today</span>
+          <span class="chevron">&#9660;</span>
+        </div>
         <div class="story-card-body">
-          <p><strong>AI search visibility audit for a pharma client</strong></p>
-          <div class="prompt-block">"Act as an AI search analyst. I'm a healthcare marketing agency working with [CLIENT TYPE]. Search for the top 5 questions a Canadian patient or HCP would ask about this condition and treatment. For each: (1) what a typical AI Overview or ChatGPT response would likely say, (2) whether our client's branded content would appear, and (3) what content gaps we should fill to improve AI visibility. Format as a table."</div>
-          <p style="font-size:12px;color:var(--white-40);margin-top:10px;">Run for 2â€“3 client categories. Takes 10 minutes â€” sharp client conversation starter.</p>
+          <ul>
+            <li><strong>Pharma digital spend officially overtakes TV â€” and AI is eating the new budget.</strong> For the first time, digital ad spend in pharma exceeds linear TV spend in 2026. Digital video and display are up 70% YoY; AI-integrated media/search up 50%. For BVL, this is the tailwind that justifies investing in AI-native production now â€” clients are moving budgets, and agencies that can't produce digital-first at speed will lose ground. <a href="https://www.mmm-online.com/features/healthcare-marketers-trend-report-2026-digital-ad-spend-overtakes-linear-tv/" target="_blank">MMM Online &#8599;</a></li>
+            <li><strong>AI-generated pharma content still requires full regulatory compliance â€” no shortcuts.</strong> If content is promotional, FDA rules on fair balance, claim support, and misleading impressions apply whether a human or model wrote the draft. This is now being explicitly called out in agency guidance. BVL must ensure every AI-assisted pharma deliverable still runs through the same compliance/PRC review process. <a href="https://blog.madebyxds.com/ai-generated-pharma-content-fda-compliance-2026" target="_blank">XDS Blog &#8599;</a></li>
+            <li><strong>Trump executive order could change AI model release timelines.</strong> A new US executive order asks major AI companies (Anthropic, OpenAI, Google) to provide early model access for government cybersecurity testing before public launch. If implemented, this could slow future model rollouts â€” worth tracking as BVL's AI tooling depends on access to frontier models. <a href="https://www.businesstoday.in/technology/artificial-intelligence/story/trumps-new-ai-order-could-change-how-openai-google-and-anthropic-launch-models-534614-2026-06-03" target="_blank">BusinessToday &#8599;</a></li>
+          </ul>
         </div>
       </div>
+
+      <div class="story-card open">
+        <div class="story-card-header" onclick="toggle(this)">
+          <span class="section-label">Tools &amp; Creative AI</span>
+          <span class="chevron">&#9660;</span>
+        </div>
+        <div class="story-card-body">
+          <ul>
+            <li><strong>AI Digital launches Creative Studio for programmatic ads.</strong> Coordinates generative AI to produce TV-grade video, audio, and display banners â€” then formats and adjusts them for different placements automatically. This is a meaningful production capability for agencies running programmatic campaigns. <a href="https://martech.org/the-latest-ai-powered-martech-news-and-releases/" target="_blank">MarTech &#8599;</a></li>
+            <li><strong>Claude Design (from Anthropic Labs) is live.</strong> Generates designs, prototypes, slides, and marketing materials from natural-language prompts. Still early, but worth piloting for internal draft production â€” especially for client presentations. <a href="https://www.mindstudio.ai/blog/code-with-claude-2026-new-agent-features" target="_blank">MindStudio &#8599;</a></li>
+            <li><strong>Google Gemini 3.5 Flash now GA.</strong> Positioned as the fastest multimodal model available via API ($1.50/$9.00 per million tokens). Outperforms Gemini 3.1 Pro on agentic benchmarks at 4x the speed â€” relevant if BVL is building or evaluating automated workflows. Gemini 3.5 Pro (reasoning) expected in June. <a href="https://wavespeed.ai/blog/posts/june-2026-ai-launch-wave/" target="_blank">WaveSpeed &#8599;</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-card-header" onclick="toggle(this)">
+          <span class="section-label">Pharma &amp; Healthcare AI</span>
+          <span class="chevron">&#9660;</span>
+        </div>
+        <div class="story-card-body">
+          <ul>
+            <li><strong>Pharma marketers cite brand safety + AI balance as top concern (55%).</strong> Experimentation phase (2025) is over â€” 2026 is about scaling AI strategies. The push is toward hyper-personalized patient engagement over broad TV. Agencies are expected to advise on this, not just execute. <a href="https://solli.global/solli-hub/pharma-marketing-hits-its-ai-inflection-point-2026/" target="_blank">Solli Global &#8599;</a></li>
+            <li><strong>OpenAI (ChatGPT Health) and Anthropic (Claude for Healthcare) both launched healthcare-specific products.</strong> AI is becoming the primary entry point for health information â€” shifting where patients and HCPs start their research. Pharma brands need to think about how they show up in AI results, not just search. <a href="https://www.fiercepharma.com/marketing/how-pharma-marketers-are-using-ai-content-creation-efficiency-boosts-while-navigating" target="_blank">Fierce Pharma &#8599;</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-card-header" onclick="toggle(this)">
+          <span class="section-label">Ops &amp; Automation</span>
+          <span class="chevron">&#9660;</span>
+        </div>
+        <div class="story-card-body">
+          <ul>
+            <li><strong>n8n continues to be the workflow tool of record for small-to-mid agencies.</strong> Strong use cases: content pipelines (research &#8594; draft &#8594; review &#8594; publish), proposal generation from CRM data, lead intake automation. Agencies running these report 10x faster production for repeatable deliverables. Self-hosted option keeps data off third-party servers â€” relevant for healthcare clients with data sensitivity concerns. <a href="https://blog.n8n.io/we-need-re-learn-what-ai-agent-development-tools-are-in-2026/" target="_blank">n8n Blog &#8599;</a></li>
+            <li><strong>Microsoft unveiled MAI-Code-1-Flash and MAI-Thinking-1.</strong> These are Microsoft's own models, designed to reduce reliance on OpenAI. Not directly relevant to BVL today, but signals that the model market is fragmenting â€” more options, more price competition ahead. <a href="https://www.cnbc.com/2026/06/02/microsoft-unveils-new-ai-models-lessen-reliance-on-openai-lower-costs.html" target="_blank">CNBC &#8599;</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-card-header" onclick="toggle(this)">
+          <span class="section-label">Policy &amp; Risk</span>
+          <span class="chevron">&#9660;</span>
+        </div>
+        <div class="story-card-body">
+          <ul>
+            <li><strong>FDA published new AI guidance (Jan 2026) reducing oversight of low-risk AI health software.</strong> The framework is risk-based: tools that assist clinicians without replacing clinical judgment may not require FDA clearance. This creates more room for AI in HCP-facing tools, but promotional content rules remain unchanged â€” don't conflate the two. <a href="https://www.ropesgray.com/en/insights/alerts/2026/01/fda-adapts-with-the-times-on-digital-health-updated-guidances-on-general-wellness-products" target="_blank">Ropes &amp; Gray &#8599;</a></li>
+            <li><strong>PAAB/Health Canada equivalent guidance is not yet updated</strong> (as of this brief). BVL should assume Canadian promotional AI content still requires the same full review process until explicit guidance is issued.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-card-header" onclick="toggle(this)">
+          <span class="section-label">BVL Prompt of the Day</span>
+          <span class="chevron">&#9660;</span>
+        </div>
+        <div class="story-card-body">
+          <h4>Compliance-safe AI copy review prompt</h4>
+          <div class="prompt-block">"Review the following [indication/product] promotional copy for Canadian healthcare marketing compliance. Flag any claims that lack adequate substantiation, any missing fair balance language, any implied superiority claims, and any phrasing that could be considered misleading under PAAB guidelines. Do not suggest changes â€” cnly flag issues and explain why each is a risk."</div>
+          <p style="margin-top:12px;">Use this as a first-pass QC step before PRC review. It won't replace the human review, but it will catch obvious issues earlier and reduce revision cycles.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- XIFAXAN -->
+  <!-- XIFAXAN PANEL -->
   <div class="panel" id="panel-xifaxan">
     <div class="day-block">
       <div class="day-header">
-        <div class="day-label">May 31, 2026 <span class="weekday">Sunday</span></div>
+        <div class="day-label">June 3, 2026 <span class="weekday">Wednesday</span></div>
         <span class="today-badge">Today</span>
       </div>
+
       <div class="story-card open">
-        <div class="story-card-header" onclick="toggle(this)"><span class="section-label">Xifaxan Updates</span><span class="chevron">â–¼</span></div>
-        <div class="story-card-body"><ul>
-          <li><strong>RED-C Phase 3 FAILURE â€” rifaximin-SSD dead (January 23, 2026).</strong> Both Phase 3 trials failed vs. placebo for primary HE prevention in cirrhotic patients. Bausch took a <strong>$1.426B goodwill impairment</strong> on the Salix unit. Removes the key pipeline growth narrative. <a href="https://www.clinicaltrialsarena.com/news/bausch-health-rifaximin-ssd-hepatic-encephalopathy-phase-iii-miss/" target="_blank">Clinical Trials Arena â†—</a> <a href="https://www.sec.gov/Archives/edgar/data/0000885590/000088559026000008/ex991red-cresultspressrele.htm" target="_blank">SEC 8-K â†—</a></li>
-          <li><strong>Access barriers persist despite no shortage.</strong> Not on FDA shortage list but patients face $1,600â€“$2,200/month HE cost barriers and insurance denials. <a href="https://www.medfinder.com/blog/xifaxan-shortage-update-what-patients-need-to-know-in-2026" target="_blank">Medfinder â†—</a></li>
-        </ul></div>
-      </div>
-      <div class="story-card open">
-        <div class="story-card-header" onclick="toggle(this)"><span class="section-label">Competitive Intelligence</span><span class="chevron">â–¼</span></div>
-        <div class="story-card-body">
-          <h4>HE Indication</h4><ul>
-            <li><strong>ACG 2026 guideline reaffirms rifaximin as standard add-on for recurrent HE.</strong> Rifaximin + lactulose remains the recommended regimen. Positive for Xifaxan's brand position. <a href="https://www.guidelinecentral.com/insights/mar-2026-acg-hepaticencephalopathy-guideline-spotlight/" target="_blank">Guideline Central â†—</a></li>
-            <li><strong>HE pipeline â€” no near-term threats, watch 2027+.</strong> VE303 (Vedanta), EBX-102 (EnteroBiotix), GR3027 (Umecrine), Grifols albumin all early-stage. No 2026 readouts. <a href="https://www.globenewswire.com/news-release/2026/05/04/3287025/0/en/Hepatic-Encephalopathy-Market-Set-for-Growth-at-a-1-2-CAGR-Through-2036-Driven-by-Emerging-Therapies-and-Rising-Disease-Burden-DelveInsight.html" target="_blank">DelveInsight â†—</a></li>
-          </ul>
-          <h4>IBS-D Indication</h4><ul>
-            <li><strong>Ibsrela (tenapanor)</strong> â€” $274M in 2025 (+73% YoY). Targets IBS-C; signals prescriber appetite for non-antibiotic GI options.</li>
-            <li><strong>Linzess (linaclotide)</strong> â€” $864.5M US net sales in 2025. Generic expanding in IBS-C. No direct IBS-D threat.</li>
-            <li><strong>Viberzi (eluxadoline)</strong> â€” IBS-D option constrained by pancreatitis safety label. <a href="https://xtalks.com/ibs-awareness-month-2026-the-hidden-realities-of-ibs-and-the-ibs-treatment-market-4725/" target="_blank">Xtalks â†—</a></li>
-          </ul>
+        <div class="story-card-header" onclick="toggle(this)">
+          <span class="section-label">Xifaxan Updates</span>
+          <span class="chevron">&#9660;</span>
         </div>
-      </div>
-      <div class="story-card open">
-        <div class="story-card-header" onclick="toggle(this)"><span class="section-label">Patent &amp; Legal Watch</span><span class="chevron">â–¼</span></div>
-        <div class="story-card-body"><ul>
-          <li><strong>Core protection runs to 2028.</strong> Teva, Sun, Sandoz settlement agreements permit authorized generic entry in 2028.</li>
-          <li><strong>Amneal â€” tentative FDA approval issued; active litigation.</strong> Tentative approval for generic rifaximin 550mg (IBS-D) January 2025. Blocked by active patent litigation. No ruling as of May 31, 2026. <a href="https://www.ajmc.com/view/fda-grants-tentative-approval-to-generic-version-of-rifaximin-for-ibs-d" target="_blank">AJMC â†—</a></li>
-          <li><strong>Norwich blocked until at least June 29, 2028.</strong> Supreme Court declined to hear appeal. <a href="https://www.stocktitan.net/news/BHC/u-s-district-court-grants-summary-judgment-in-favor-of-fda-salix-and-jeg6lnr34qf1.html" target="_blank">StockTitan â†—</a></li>
-        </ul></div>
-      </div>
-      <div class="story-card">
-        <div class="story-card-header" onclick="toggle(this)"><span class="section-label">Strategic Signals</span><span class="chevron">â–¼</span></div>
-        <div class="story-card-body"><ul>
-          <li><strong>SSD failure weakens Salix's HE growth story.</strong> Pipeline competitors (VE303, GR3027) may attract more development capital. Watch Q2 2026 earnings for Xifaxan revenue guidance revisions.</li>
-          <li><strong>Generic entry is structured and approaching.</strong> Teva, Sun, Sandoz authorized for 2028. Amneal in active litigation â€” the key variable. Brand defense window approximately 18â€“24 months.</li>
-        </ul></div>
-      </div>
-    </div>
-  </div>
+        <div class="story-card-body">
+          <ul>
+            <li><strong>Q1 2026 Revenue Strong â€” 21% Growth:</strong> Salix reported Q1 2026 revenues of $639M (ÉMÓHÈ
+ÌN	HœËˆLHŒJKÚ]Y˜^[ˆÜXÚYšXØ[HÜİ[™ÈŒIH™]™[YHÜ›İİˆHÛÜ™Hœ˜[˜Ú\ÙH™[XZ[œÈX[H\Ü]H\[[™HÙ]˜XÚÜËˆH™YHšÎ‹ËİİİËœÙXË™Ûİ‹Ğ\˜Ú]™\ËÙYØ\‹Ù]KÌMNLÌMNLŒLKÙ^NLK\L^Œ‹šHˆ\™Ù]H—Ø›[šÈ˜]\ØÚX[LHŒˆ›Ü›HRÈ
+ÑPÊH	ˆÎNNNÏØOÛO‚ˆOİ›Û™Ï”‘QPÈ\ÙHÈ›ÙÜ˜[H˜Z[Y
+˜[X\HŒŠNÜİ›Û™Ïˆ›İ‘QPËLÌLÌH[™‘QPËLÌLÌˆ8 %H\ÙHÈšX[È]˜[X][™È[[Üœİ\Ë\šY˜^[Z[ˆÔÑ›Üˆš[X\H™]™[[ÛˆÙˆH[ˆ]™\ˆÚ\œšÜÚ\È8 %Z\ÜÙYZ\ˆš[X\H[™Ú[Ëˆ[œ›ÛYK
+È]Y[ÈXÜ›ÜÜÈÎNÚ]\È[ˆMÈÛİ[šY\ËˆHYÈØ\ÈØY™H[™Ù[]Û\˜]Y]Y›İÚYÛšYšXØ[H[^Hš\œİHÛœÙ]œËˆXÙX›Ëˆ˜]\ØÚ\È™]šY]Ú[™ÈH]\Ù]›Üˆœİ[X[™]È]™[ÜY[ÜÜ[š]Y\Ëˆˆ\ÈØ\ÈHYX[š[™Ù[\[[™HÜÜÎˆ›È\›İ™Y™]™[]]™H\˜\H›ÜˆHİ\œ™[H^\İËˆH™YHšÎ‹ËİİİË˜Û[šXØ[šX[Ø\™[˜K˜ÛÛKÛ™]ÜËØ˜]\ØÚZX[\šY˜^[Z[‹\ÜÙZ\]XËY[˜Ù\[Ü]K\\ÙKZZZK[Z\ÜËÈˆ\™Ù]H—Ø›[šÈÛ[šXØ[šX[È\™[˜H	ˆÎNNNÏØOˆH™YHšÎ‹ËØÛ]˜[˜ÛÛKÛ™]ÜËØ˜]\ØÚZX[Ë\\ÙKLË\™YXË\›ÙÜ˜[KY›Ü‹\šY˜^[Z[‹\ÜÙ[Z\ÜÙ\Ë\š[X\KY[™Ú[Z[‹XÚ\œšÜÚ\Ë\™[]YZ\]XËY[˜Ù\[Ü]Hˆ\™Ù]H—Ø›[šÈÛ]˜[	ˆÎNNNÏØOÛO‚ˆİ[‚ˆÙ]‚ˆÙ]‚‚ˆ]ˆÛ\ÜÏHœİÜKXØ\™Ü[ˆ‚ˆ]ˆÛ\ÜÏHœİÜKXØ\™ZXY\ˆˆÛ˜ÛXÚÏHÙÙÛJ\ÊH‚ˆÜ[ˆÛ\ÜÏHœÙXİ[Û‹[X™[ÛÛ\]]]™H[[YÙ[˜ÙOÜÜ[‚ˆÜ[ˆÛ\ÜÏH˜Ú]œ›Ûˆ‰ˆÎMŒÏÜÜ[‚ˆÙ]‚ˆ]ˆÛ\ÜÏHœİÜKXØ\™X›ÙH‚ˆ’H
+\]XÈ[˜Ù\[Ü]JOÚ‚ˆ[‚ˆOİ›Û™ÏŒŒˆPÑÈÛ[šXØ[İZY[[™H8 %šY˜^[Z[ˆ™Z[™›Ü˜ÙYÜİ›Û™ÏˆHPÑÈX›\ÚY]È\]YHİZY[[™H[ˆX\˜ÚŒ‹ˆÙ^HšY˜^[Z[ˆÜÚ][ÛœÎˆİ›Û™Ï•TÈ›Ü[^\ÏÜİ›Û™Ïˆ8 %İ›Û™È™XÛÛ[Y[™][Û‹[š]X]HšY˜^[Z[ˆM^\È™KUTËÛÛ[YH	ˆÎNÍˆ[ÛÎÈİ›Û™Ï”™Xİ\œ™[ÒH™]™[[ÛÜİ›Û™Ïˆ8 %ÛÛ™][Û˜[™XÛÛ[Y[™][Ûˆ›ÜˆšY˜^[Z[ˆ[ˆİ]]Y[Ù][™ÎÈİ›Û™ÏXİ]HÒOÜİ›Û™Ïˆ8 %İZY[[™HİYÙÙ\İÈY[™ÈšY˜^[Z[ˆÈXİ[ÜÙH
+Y[˜İ›İ™\XÙ[Y[
+Kˆ\ÈİZY[[™H\]H\È˜]›Ü˜X›H›ÜˆY˜^[‰ÜÈX™[[™XØ][ÛœÈ[™Úİ[İ\Ü›Ü›][\HÜÚ][Ûš[™ËˆH™YHšÎ‹ËÚ›İ\›˜[Ë›İË˜ÛÛKØZ™ËÙ[^ÌŒ‹ÌÌØXÙ×ØÛ[šXØ[ÙİZY[[™W×Ú\]X×Ù[˜Ù\[Ü]KŒL‹˜\Üˆ\™Ù]H—Ø›[šÈPÑÈÛ[šXØ[İZY[[™H	ˆÎNNNÏØOˆH™YHšÎ‹ËİİİË™İZY[[™XÙ[˜[˜ÛÛKÚ[œÚYÚËÛX\‹LŒ‹XXÙËZ\]XÙ[˜Ù\[Ü]KYİZY[[™K\ÜİYÚÈˆ\™Ù]H—Ø›[šÈ‘İZY[[™HÙ[˜[	ˆÎNNNÏØOÛO‚ˆOİ›Û™Ï”\[[™HH\˜\Y\È8 %X\›HİYÙNÜİ›Û™Ïˆ[Y\™Ú[™È\˜\Y\È[ˆHH\[[™H[˜ÛYH‘LÌÈ
+™Y[Hš[ÜØÚY[˜Ù\ÊKPTLÈ
+X\\š]
+KUˆ[[Z[ˆIH
+ÜšY›ÛÊKP–LLˆ
+[\›Ğš[İ^
+K[™ÔŒÌÈ
+[YXÜš[™JKˆ›Û™H\™H™X\ˆ\›İ˜[ÈX\šÙ]Ü›İİ›Ú™XİY][Ù\İKŒ‰HĞQÔˆ›İYÚŒÍ‹ˆH™YHšÎ‹ËİİİË™ÛØ™[™]ÜİÚ\™K˜ÛÛKÛ™]ÜË\™[X\ÙKÌŒ‹ÌKÌÌÌÌKÌÙ[‹Ò\]XËQ[˜Ù\[Ü]KSX\šÙ]TÙ]Y›Ü‹QÜ›İİX]XKLKŒ‹PĞQÔ‹U›İYÚLŒÍ‹Qš]™[‹XKQ[Y\™Ú[™ËU\˜\Y\ËX[™Tš\Ú[™ËQ\ÙX\ÙKP\™[‹Q[™R[œÚYÚš[ˆ\™Ù]H—Ø›[šÈ‘ÛØ™S™]ÜİÚ\™HÈ[™R[œÚYÚ	ˆÎNNNÏØOÛO‚ˆOİ›Û™Ï“PTÕT”ÑHšX[
+ZXÜ›Øš[İH˜[œÜ[
+NÜİ›Û™ÏˆHK\ÜÛœÛÜ™YšX[\È[™\İYØ][™ÈZXÜ›Øš[İH˜[œÜ[Ø\İ[\È›ÜˆH™]™[[Ûˆ[ˆÚ\œšÜÚ\È]Y[Ëˆİ[[ˆX\›HİYÙ\ÎÈ›İH™X\‹]\›HÛÛ[Y\˜ÚX[™X]]ÛÜ[Ûš]Üš[™È\ÈH›Û‹X[Xš[İXÈH\›ØXÚˆH™YHšÎ‹ËİİİË™İZY[[™XÙ[˜[˜ÛÛKÚ[œÚYÚËÛX^KLŒ‹Z\]XËY[˜Ù\[Ü]K]šX[\™]šY]ËÈˆ\™Ù]H—Ø›[šÈ‘İZY[[™HÙ[˜[8 %šX[™]šY]È	ˆÎNNNÏØOÛO‚ˆİ[‚ˆ’P”ËQÚ‚ˆ[‚ˆOİ›Û™Ï’Xœ»\™[HÜ›İÚ[™È˜\İÜİ›Û™Ïˆ\™[^	ÜÈXœÜ™[H
+[˜\[›ÜŠHÜİY	ÍŒ“H[ˆŒHØ[\È8 %ÌÉHÜ›İİ[ÖHœËˆ	MNŒÓH[ˆŒˆİ[Hœ˜Xİ[ÛˆÙˆY˜^[‰ÜÈ›Û[YK]HÜ›İİ˜Z™XİÜHØ\œ˜[È][[Û‹ˆXœÜ™[H\ÈP”ËPË›İP”ËQ]ÛÛ\]\È›ÜˆÒH™\ØÜšX™\ˆZ[™Ú\™KˆH™YHšÎ‹ËŞ[ÜË˜ÛÛKÚXœËX]Ø\™[™\ÜË[[ÛLŒ‹]KZY[‹\™X[]Y\Ë[Ù‹ZXœËX[™]KZXœË]™X]Y[[X\šÙ]MÌKÈˆ\™Ù]H—Ø›[šÈ–[ÜÈP”È]Ø\™[™\ÜÈ[ÛŒˆ	ˆÎNNNÏØOÛO‚ˆOİ›Û™Ï“[™\ÜÈ™X\ˆ›ØÚØ\İ\Üİ›Û™Ïˆ[™\ÜÈ
+[˜XÛİYKX˜•šYKÒ\›ÛÛÛÙ
+HÙ[™\˜]Y	SH[ˆTÈ™]Ø[\È[ˆŒKˆÙ[™\šXÈ[˜XÛİYH\È›İÈ[Ü™HÚY[H]˜Z[X›KY[™ÈšXÚ[™È™\Üİ\™Kˆ[™\ÜÈ\Èš[X\š[HP”ËPËĞÒPÈ8 %[™\™XİÛÛ\]][ÛˆÚ]Y˜^[ˆ[ˆP”ËÛO‚ˆOİ›Û™Ï•šX™\šH8 %İX›K[Z]YÜ›İİÜİ›Û™ÏˆšX™\šH
+[^YÛ[™KX˜•šYJH™[XZ[œÈ[ˆP”ËQÜ[Ûˆ]Ü›İİ\ÈÛÛœİ˜Z[™YHÜ[˜İ\ˆÙˆÙHÜ\ÛHš\ÚÈ[™™\ØÜšXš[™È™\İšXİ[ÛœËˆ›ÈXZ›ÜˆŒˆ™]ÜÈ›İ[™ˆ›ÈÚYÛšYšXØ[İ›Û™^
+[ÜÙ]›ÛŠH™]ÜÈ[ˆH\İÌˆİ\œËÛO‚ˆİ[‚ˆÙ]‚ˆÙ]‚‚ˆ]ˆÛ\ÜÏHœİÜKXØ\™‚ˆ]ˆÛ\ÜÏHœİÜKXØ\™ZXY\ˆˆÛ˜ÛXÚÏHÙÙÛJ\ÊH‚ˆÜ[ˆÛ\ÜÏHœÙXİ[Û‹[X™[”][	˜[\ÈYØ[Ø]ÚÜÜ[‚ˆÜ[ˆÛ\ÜÏH˜Ú]œ›Ûˆ‰ˆÎMŒÏÜÜ[‚ˆÙ]‚ˆ]ˆÛ\ÜÏHœİÜKXØ\™X›ÙH‚ˆ[‚ˆOİ›Û™Ï[[™X[S‘H8 %]YØ][ÛˆÛ™ÛÚ[™ÎÜİ›Û™Ïˆ[[™X[\›XXÙ]]XØ[È™XÙZ]™Y[]]™H‘H\›İ˜[›ÜˆšY˜^[Z[ˆMLYÈ
+P”ËQ™Y™\™[˜ÙJH[ˆ˜[X\HŒK›ØÚÙYHXİ]™H]YØ][Û‹ˆ˜]\ØÚš[YİZ][ˆŒšYÙÙ\š[™ÈHÌ[[ÛS‘Hİ^Kˆ›ÈÛİ\[[™È\ÜİYY[ˆH\İÌˆİ\œËˆ[\›İ˜[Ûİ[™\]Z\™H]YØ][Ûˆ™\ÛÛ][ÛÈX\›Y\İ™X[\İXÈÙ[™\šXÈ[H™[XZ[œÈŒŒ8 $ÌŒKˆH™YHšÎ‹ËİİİË˜Z›XË˜ÛÛKİšY]ËÙ™KYÜ˜[Ë][]]™KX\›İ˜[]ËYÙ[™\šXË]™\œÚ[Û‹[Ù‹\šY˜^[Z[‹Y›Ü‹ZXœËYˆ\™Ù]H—Ø›[šÈR“PÈ	ˆÎNNNÏØOˆH™YHšÎ‹ËÙYÜİÜ™[™]ÜË˜ÛÛKØ˜]\ØÚZX[Yš[\Ë\][[]ÜİZ]XYØZ[œİX[[™X[[İ™\‹YÙ[™\šXË^Y˜^[ˆˆ\™Ù]H—Ø›[šÈ‘YÈİÜ™H™]ÜÈ	ˆÎNNNÏØOÛO‚ˆOİ›Û™Ï”Û[[Üœ][\Ü]\ÎÜİ›Û™ÏˆÛ™ÛÚ[™È\Ü]\È[›Ûš[™È›İ\ˆÛ[[Üœ][È
+	ˆÎMNËÉˆÎMÈšY˜^[Z[ˆZ^\™HÛZ[\ÊH]™H™Y[ˆİ\İZ[™Y›Üˆ
+È^\ÈÚ]İ]X\›H\ÛZ\ÜØ[8 %İYÙÙ\İ[™ÈHÛ[[ÜœÛZ[\È\™HYØ[H\˜X›Kˆ™Y\˜[Ú\˜İZ]™]š[İ\ÛHY™š\›YYHšY˜^[Z[ˆ][šXİÜH›ÜˆØ[^ˆH™YHšÎ‹ËİİİËœ]Û˜\˜ÛÛKÜ™\Ûİ\˜Ù\ËØ›ÙËÛ]YØ][Û‹Ù™Y\˜[XÚ\˜İZ]XY™š\›\Ë\šY˜^[Z[‹\][]šXİÜKY›Ü‹\Ø[^\\›XXÙ]]XØ[Ë\]Û˜\Y]\™ZØKÈˆ\™Ù]H—Ø›[šÈ”]Û˜\8 %™Y\˜[Ú\˜İZ]Y™š\›\È	ˆÎNNNÏØOÛO‚ˆİ[‚ˆÙ]‚ˆÙ]‚‚ˆ]ˆÛ\ÜÏHœİÜKXØ\™‚ˆ]ˆÛ\ÜÏHœİÜKXØ\™ZXY\ˆˆÛ˜ÛXÚÏHÙÙÛJ\ÊH‚ˆÜ[ˆÛ\ÜÏHœÙXİ[Û‹[X™[”İ˜]YÚXÈÚYÛ˜[ÏÜÜ[‚ˆÜ[ˆÛ\ÜÏH˜Ú]œ›Ûˆ‰ˆÎMŒÏÜÜ[‚ˆÙ]‚ˆ]ˆÛ\ÜÏHœİÜKXØ\™X›ÙH‚ˆ[‚ˆOİ›Û™Ï”‘QPÈ˜Z[\™HÜ™X]\ÈH™]™[[Ûˆ˜Xİ][H8 %Ø]ÚÛÛ\]]ÜœÎÜİ›Û™Ïˆ›È\˜\H\È\›İ™Y›Üˆš[X\HH™]™[[Ûˆ[ˆÚ\œšÜÚ\ËˆH‘QPÈ˜Z[\™HÙ\Û‰İÜ[ˆ\ÈÜXÙHÈY˜^[ˆ
+Ü›Û™È[™XØ][ÛŠK]]Ù\ÈÚYÛ˜[HY™šXİ[HÙˆ›İš[™È™]™[[Û‹ˆ\[[™H^Y\œÈ
+‘LÌËÔŒÌËZXÜ›Øš[İH\›ØXÚ\ÊHX^HXØÙ[\˜]H[™\İY[[È\È[›Y]™YYˆÛÜ˜XÚÚ[™ÈÚ]\ˆ[HÙˆ\ÙH]›İİØ\™S‘Ô\ÙHˆ\™Ù[˜ŞKÛO‚ˆOİ›Û™ÏPÑÈİZY[[™H˜]›Ü˜X›H8 %]ÛÛ™][Û˜[[™İXYÙH[Z]È›Ü›][\H]™\˜YÙNÜİ›Û™ÏˆH™]ÈPÑÙİZY[[™H™Z[™›Ü˜Ù\ÈšY˜^[Z[‰ÜÈ›ÛH[ˆHX[˜YÙ[Y[]HÛÛ™][Û˜[™XÛÛ[Y[™][Ûˆ[™İXYÙH
+œËˆHİ›Û™È™XÛÛ[Y[™][ÛŠH›Üˆİ]]Y[™Xİ\œ™[ÒHÛİ[[Z]^Y\ˆ]™\˜YÙKˆØ[^9ÜÈX\šÙ]XØÙ\ÜÈX[HÚİ[™H[™ØYÚ[™È^Y\œÈÛˆ\È[™İXYÙHØ\›İË\ÜXÚX[HÚ]Ù[™\šXÜÈ[™[™ËÛO‚ˆİ[‚ˆÙ]‚ˆÙ]‚‚ˆÙ]‚ˆÙ]‚‚ˆKKHÑQRÓHS‘SKO‚ˆ]ˆÛ\ÜÏHœ[™[ˆYHœ[™[]ÙYZÛH‚ˆ]ˆÛ\ÜÏH™^KX›ØÚÈ‚ˆ]ˆÛ\ÜÏH™^KZXY\ˆ‚ˆ]ˆÛ\ÜÏH™^K[X™[“X^HH8 $ÈÌKŒˆÜ[ˆÛ\ÜÏHÙYZÙ^H•ÙYZÛHYÙ\İÜÜ[Ù]‚ˆÙ]‚‚ˆ]ˆÛ\ÜÏHœİÜKXØ\™Ü[ˆ‚ˆ]ˆÛ\ÜÏHœİÜKXØ\™ZXY\ˆˆÛ˜ÛXÚÏHÙÙÛJ\ÊH‚ˆÇ7â6Æ73Ò'6V7F–öâÖÆ&VÂ#åF†—2vVV²–â&W66‚†VÇFƒÂ÷7ãà¢Ç7â6Æ73Ò&6†Wg&öâ#âb3“cc³Â÷7ãà¢ÂöF—cà¢ÆF—b6Æ73Ò'7F÷'’Ö6&BÖ&öG’#à¢ÇVÃà¢ÆÆ“ãÇ7G&öæsä&W66‚†VÇF‚&VG2##bW7F–ÖFW2(	B'F‚6öç6V7WF—fRV'FW"öbw&÷wF‚ãÂ÷7G&öæsâ&WfVçVRöbC"ãS$"‡g2âC"ãC$"W7F–ÖFR’ÂU2Cãs‚g2âCãc‚f÷&V67BÂT$•DDW#rR–õ’âgVÆÂ×–V"wV–Fæ6RBCRã#^(	2CRãD"â6öÇFæB6Æ—‚6ÆÆVB÷WB2¶W’G&—fW'2âf÷"%dÃ¢6Æ–VçB–â7G&öærf–ææ6–Â†VÇF‚—2Ö÷&RÆ–¶VÇ’Fò–çfW7B–âÖ&¶WF–ær&öw&×2(	BW6RF†—226öçFW‡Bvö–ær–çFòÖ–B×–V"66÷R6öçfW'6F–öç2ãÂöÆ“à¢ÆÆ“ãÇ7G&öæså&–f†–Ö–âÕ54B†6R2f–ÇW&R(	BCãD"vööGv–ÆÂ–×—&ÖVçBöâ6Æ—‚ãÂ÷7G&öæsâ&÷F‚$TBÔ2G&–Ç2Ö—76VBF†V—"&–Ö'’VæGö–çB†FVÆ––ær„Röç6WB–â6—'&†÷6—2F–VçG2’âv—F‚F†B—VÆ–æRvöæRÂ6Æ—‚w2w&÷wF‚7F÷'’æ'&÷w2FòFVfVæF–ærW†—7F–ær†–f†â6†&RF‡&÷Vv‚##‚&Vf÷&RWF†÷&—¦VBvVæW&–72VçFW"âç’†–f†â6×–vç2vR'Vâ–âF†RæW‡B‚ÖöçF‡2&R'&æBÖFVfVç6RÆ—2Âæ÷Bw&÷wF‚Æ—2â66÷R66÷&F–ævÇ’ãÂöÆ“à¢ÆÆ“ãÇ7G&öæså&W6W%f—6–öâ$TE32ÆVæ6†W2æF–öæÆÇ’(	BÖ¦÷"6öç7VÖW"Ö&¶WF–ærÖöÖVçBãÂ÷7G&öæsâF†RæWr"×f—FÖ–âf÷&×VÆ—2æ÷r–âvÆÖ'BÂF&vWBÂvÆw&VVç2ÂæBÖ¦öâv—F‚gVÆÂæF–öæÂ&WF–ÂÆ6VÖVçBW‡V7FVB'’§VæRâ&6¶VB'’#²6Æ–æ–6Â7GVF–W2âv÷'F‚Ööæ—F÷&–ærv†WF†W"%dÂ—2÷6—F–öæVBöâç’&VÆFVBv÷&²(	B–bæ÷BÂ—BÖ’&R6öçfW'6F–öâFò†fRãÂöÆ“à¢ÆÆ“ãÇ7G&öæså6öÇFÖVF–6ÂV&ç2G&FVÖ&²6W'F–f–6F–öâf÷"F†W&ÖvR–â6†–æãÂ÷7G&öæsâföÆÆ÷v–ærF†RFV6VÖ&W"##R6†–&ò7V—6—F–öâÂ6öÇFæ÷r†2F—&V7BF—7G&–'WF–öâæB'&æB&÷FV7F–öâ–â6†–æw2W7F†WF–2FWf–6RÖ&¶WBâ&WfVçVW2W#RR–õ’v—F‚6–6–f–2ÆVF–ærâvF6‚f÷"–æ7&V6VB–çfW7FÖVçB–â„5æB6öç7VÖW"6öçFVçB&÷VæBF†W&ÖvRvÆö&ÆÇ’ãÂöÆ“à¢ÆÆ“ãÇ7G&öæså†–f†âvVæW&–2VçG'“¢(	3#BÖöçF‚v–æF÷rãÂ÷7G&öæsâFWfÂ7VâÂæB6æF÷¢&RWF†÷&—¦VBf÷"##‚VçG'’âÖæVÂ†2FVçFF—fRdD&÷fÂæB—2–â7F—fRÆ—F–vF–öââF†RÖæVÂ66R÷WF6öÖR—2F†R¶W’f&–&ÆR(	Bç’6WGFÆVÖVçB÷"6÷W'B'VÆ–ær6–væÇ2F†R7F'BöbF†R'&æBw2f–æÂ7–6ÆRâ%dÂ6†÷VÆBf7F÷"F†—2F–ÖVÆ–æR–çFòç’×VÇF’×–V"†–f†â7G&FVw’6öçfW'6F–öç2v—F‚F†R6Æ–VçBãÂöÆ“à¢Â÷VÃà¢ÂöF—cà¢ÂöF—cà ¢ÆF—b6Æ73Ò'7F÷'’Ö6&B÷Vâ#à¢ÆF—b6Æ73Ò'7F÷'’Ö6&BÖ†VFW""öæ6Æ–6³Ò'FövvÆR‡F†—2’#à¢Ç7â6Æ73Ò'6V7F–öâÖÆ&VÂ#åF†—2vVV²–â’f÷"%dÃÂ÷7ãà¢Ç7â6Æ73Ò&6†Wg&öâ#âb3“cc³Â÷7ãà¢ÂöF—cà¢ÆF—b6Æ73Ò'7F÷'’Ö6&BÖ&öG’#à¢ÇVÃà¢ÆÆ“ãÇ7G&öæsä’—2æ÷rF†Rf—'7Bf–ÇFW"f÷"†VÇF‚6öçFVçB(	BÖ÷7BvVæ6–W2&VâwBG&6¶–ær—BãÂ÷7G&öæsâvöövÆR’÷fW'f–Ww2æ÷rV"–â#RRöbÆÂ6V&6†W2âöæÇ’#"RöbÖ&¶WF–ærFV×2G&6²’6V&6‚f—6–&–Æ—G’âf÷"†&ÖæB†VÇF‚'&æG2Â„52æBF–VçG2–æ7&V6–ævÇ’vWBF†V—"f—'7Bç7vW"g&öÒâ’7VÖÖ'’Âæ÷B6V&6‚&W7VÇBâ%dÂ6†÷VÆB&RGf—6–ær6Æ–VçG2öâ’×f—6–&ÆR6öçFVçB7G&FVw’2F—7F–æ7B6W'f–6R(	BF†—2—2æV"×FW&Ò&WfVçVR6öçfW'6F–öâãÂöÆ“à¢ÆÆ“ãÇ7G&öæsä’×÷vW&VBÔÅ"&Wf–Wr—26ö×&W76–ær†&Ö6öçFVçB7–6ÆW2ãÂ÷7G&öæsâFööÇ2æ÷r–æ6ÇVFRWFöÖFVB&VfW&Væ6Ræ6†÷&–ærÂÆö6Â&VwVÆF÷'’6†V6·2†–æ6ÇVF–ær"’ÂæBF–ffW&VçF–FVB&÷fÂv÷&¶fÆ÷w2âF†R—F6‚f÷"%dÃ¢$’Ö76—7FVBÂ‡VÖâ×&Wf–WvVB"&öGV7F–öâÖVç2f7FW"6×–vç2v—F‚6ö×Æ–çBwV&G&–Ç2(	Bæ÷B§W7B6†VW"6÷’âF†—2—2†÷rFòg&ÖR’W6RFò6WF–÷W2†&Ö6Æ–VçG2ãÂöÆ“à¢ÆÆ“ãÇ7G&öæsä6ÆVFRÖævVBvVçG2(	BG&VÖ–ærÂ÷WF6öÖW2Â×VÇF’ÖvVçB÷&6†W7G&F–öâãÂ÷7G&öæsâçF‡&÷–2w2F‡&VRæWrfVGW&W2„Ö’b’&RF†R'V–ÆF–ær&Æö6·2öb&VÂ%dÂ–çFW&æÂ÷2vVçC¢6VÆbÖ–×&÷fVÖVçBg&öÒ7B6W76–öç2ÂvöÂÖF—&V7FVBW†V7WF–öâÂæB7V6–Æ—7B7V"ÖvVçBFVÆVvF–öââF†—2—2F†R&6†—FV7GW&Rf÷"WFöÖF–ær'&–Vb&÷WF–ærÂ76WB&Wf–WrÂæB&W÷'F–ær(	Bæ÷B§W7B6†F&÷BWw&FRãÂöÆ“à¢ÆÆ“ãÇ7G&öæsä÷Vä’w2G2ÖævW"–ç6–FR6†DuB—2Æ—fRãÂ÷7G&öæsâGfW'F—6W'26âæ÷rÖævR6×–vç2F—&V7FÇ’–â6†DuBÂæBƒrRöb’&VfW'&ÂG&ff–27W'&VçFÇ’fÆ÷w2F‡&÷Vv‚—Bâ–b6Æ–VçG26²&÷WB’6V&6‚f—6–&–Æ—G’Â6†DuBB7G&FVw’—2æ÷r'BöbF†Rç7vW"Æöæw6–FR4TòæBvöövÆRâv&VæW72×7FvRöæÇ’f÷"æ÷rÂ'WBF†—2v–ÆÂÖ÷fRf7BãÂöÆ“à¢ÆÆ“ãÇ7G&öæsäFö&Rf—&VfÇ’7&VF—fRvVçB(	B6fW"vVä’f÷"&VwVÆFVB6Æ–VçG2ãÂ÷7G&öæsâf—&VfÇ’w2•–æFVÖæ–f–6F–öâÖ¶W2—BÖ÷&RFVfVç6–&ÆR6†ö–6RF†âÖ–F¦÷W&æW’f÷"†&ÖæB6öç7VÖW"†VÇF‚6Æ–VçBv÷&²âF†RæWr7&VF—fRvVçB÷&6†W7G&FW26öæ6WBvVæW&F–öâÂ76WB&öGV7F–öâÂæB'&æB6öç6—7FVæ7’–âöæRÆö÷âv÷'F‚–Æ÷F–æröâÆ÷r×7F¶W26Æ–VçBFVÆ—fW&&ÆR&Vf÷&R—F6†–ær—BãÂöÆ“à¢Â÷VÃà¢ÂöF—cà¢ÂöF—cà ¢ÆF—b6Æ73Ò'7F÷'’Ö6&B#à¢ÆF—b6Æ73Ò'7F÷'’Ö6&BÖ†VFW""öæ6Æ–6³Ò'FövvÆR‡F†—2’#à¢Ç7â6Æ73Ò'6V7F–öâÖÆ&VÂ#å6–væÇ2v÷'F‚vF6†–æsÂ÷7ãà¢Ç7â6Æ73Ò&6†Wg&öâ#âb3“cc³Â÷7ãà¢ÂöF—cà¢ÆF—b6Æ73Ò'7F÷'’Ö6&BÖ&öG’#à¢ÇVÃà¢ÆÆ“ãÇ7G&öæsäÖæVÂÆ—F–vF–öâ–âƒ"##bãÂ÷7G&öæsâ6WGFÆVÖVçB÷"6÷W'B66†VGVÆ–ær÷&FW"öâÖæVÂw2&–f†–Ö–âäDv–ÆÂ6–væÂF†R7GVÂ7F'Böb†–f†âw2'&æBÖFVfVç6Rv–æF÷râvF6‚f÷"ç’F—7G&–7B6÷W'B7F—f—G’(	B—B6†ævW2F†RW&vVæ7’öbÆöær×FW&Ò6Æ—‚6×–vâÆææ–ærãÂöÆ“à¢ÆÆ“ãÇ7G&öæså"w2’&VwVÆF÷'’&Wf–WrÖöFVÂãÂ÷7G&öæsâ"—2'V–ÆF–ær—G2÷vâ’Ö76—7FVB&Wf–Wr&ö6W72‡†6VBÆVæ6‚öævö–ær’â6æF–â†&ÖvVæ6–W2F†BvWB†VBöbF†—2v–ÆÂ†fR&öGV7F–öâ7VVBGfçFvRâÖöæ—F÷"F†R"’v÷&¶–ærw&÷WvS²F†—26÷VÆBffV7B%dÂw26ö×Æ–æ6Rv÷&¶fÆ÷rv—F†–ân(µíLˆ[ÛËÛO‚ˆOİ›Û™Ï”™\Ù\•š\Ú[ÛˆÛÛ\]]Üˆ™\ÜÛœÙKÜİ›Û™ÏˆT‘ÑÌÉÜÈ][˜Ú[È˜][Û˜[™]Z[Ú[›Û\ÛÛ\][™ÈSRHİ\[Y[œ˜[™ÈÈ™\ÜÛ™ˆYˆ•“\ÈŠÓÕÈÛÜšÈ[ˆØÛÜKØ]Ú›ÜˆÛÛ\]]]™HÜÚ][Ûš[™ÈÚYÈ[ˆˆŒ‹ÛO‚ˆİ[‚ˆÙ]‚ˆÙ]‚‚ˆ]ˆÛ\ÜÏHœİÜKXØ\™‚ˆ]ˆÛ\ÜÏHœİÜKXØ\™ZXY\ˆˆÛ˜ÛXÚÏHÙÙÛJ\ÊH‚ˆÜ[ˆÛ\ÜÏHœÙXİ[Û‹[X™[”™XÛÛ[Y[™YXİ[ÛÜÜ[‚ˆÜ[ˆÛ\ÜÏH˜Ú]œ›Ûˆ‰ˆÎMŒÏÜÜ[‚ˆÙ]‚ˆ]ˆÛ\ÜÏHœİÜKXØ\™X›ÙH‚ˆ[‚ˆOİ›Û™Ï”İ\[ˆRHÙX\˜Úš\ÚXš[]HÛÛ™\œØ][ÛˆÚ]Û™HÜˆÛÈÛY[È™Y›Ü™H[™HMKÜİ›Û™Ïˆ\ÙHH]Y]›Û\[ˆHRHœšYYˆ
+ÜˆH[\]H™\œÚ[ÛŠHÈÙ[™\˜]HHÛY[\ÜXÚYšXÈØ\[˜[\Ú\È[ˆ[™\ˆ[ˆİ\‹ˆHİ]]Û›HŒ‰HÙˆX\šÙ][™ÈX[\È˜XÚÈRHš\ÚXš[]HXZÙ\È›ÜˆHÚ\œÜ[š[™ËÛO‚ˆOİ›Û™ÏÛÛ™š\›H•“	ÜÈÜÚ][Ûš[™ÈÛˆ[HY˜^[ˆÛÜšÈ™Z[™È[›™Y›ÜˆŒ¸ $ÌŒËÜİ›Û™ÏˆÚ]HÔÑ˜Z[\™H[™HŒÙ[™\šXÈ[Y[[™K[H™]ÈY˜^[ˆØÛÜHÚİ[™HØÛÜY\ÈHœ˜[™YY™[œÙH^HÚ]HYš[™Y[™]H8 %›İ[ˆÜ[‹Y[™YØ[\ZYÛ‹ˆÙ][YÛ›Y[Ûˆ]œ˜[Z[™È™Y›Ü™H[H\İ[X]\ÈÛÈİ]ÛO‚ˆİ[‚ˆÙ]‚ˆÙ]‚‚ˆÙ]‚ˆÙ]‚‚Ù]‚]ˆÛ\ÜÏH™›Ûİ\ˆ‚ˆÜ[‰ˆÌMNÈœ›ØYšY]ÈXœÈ	ˆÌNÎÈÓH\™\ˆ[[YÙ[˜ÙHŞ\İ[OÜÜ[‚ˆH™YHšÎ‹ËİİİË˜œ›ØYšY]ÛXœË˜ØHˆ\™Ù]H—Ø›[šÈ˜œ›ØYšY]ÛXœË˜ØH	ˆÎNNNÏØO‚Ù]‚ØÜš\‚ˆ[˜İ[ÛˆİÚ]ÚXŠ˜[YJHÂˆÛÛœİ˜[Y\ÈHÉØ˜]\ØÚ	Ë	ØZIË	ŞY˜^[‰Ë	İÙYZÛI×NÂˆØİ[Y[œ]Y\TÙ[XİÜ[
+	ËX‰ÊK™›Ü‘XXÚ
 
-  <!-- WEEKLY -->
-  <div class="panel" id="panel-weekly">
-    <div class="no-brief">
-      <strong>Best Of arrives Fridays</strong>
-      The weekly digest runs every Friday at 7 AM, pulling the top stories from all three streams for the week.
-    </div>
-  </div>
-
-</div>
-
-<div class="footer">
-  <span>Â© Broadview Labs Â· GM Partner Intelligence System</span>
-  <a href="https://www.broadviewlabs.ca" target="_blank">broadviewlabs.ca â†—</a>
-</div>
-
-<script>
-  const d = new Date();
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  document.getElementById('dateBadge').textContent = days[d.getDay()] + ' ' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
-
-  function switchTab(name) {
-    const names = ['bausch','ai','xifaxan','weekly'];
-    document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', names[i]===name));
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    document.getElementById('panel-'+name).classList.add('active');
-  }
-
-  function toggle(header) { header.parentElement.classList.toggle('open'); }
-
-  // Pixel mosaic
-  const mosaic = document.getElementById('mosaic');
-  const colors = ['#91eebe','#7b6cf6','#ffffff','transparent','transparent','transparent','transparent','transparent'];
-  for (let i = 0; i < 72; i++) {
-    const cell = document.createElement('div');
-    cell.className = 'mosaic-cell';
-    cell.style.background = colors[Math.floor(Math.random() * colors.length)];
-    mosaic.appendChild(cell);
-  }
-</script>
-</body>
+JHOˆ˜Û\ÜÓ\İÙÙÛJ	ØXİ]™IË˜[Y\ÖÚWOOO[˜[YJJNÂˆØİ[Y[œ]Y\TÙ[XİÜ[
+	Ëœ[™[	ÊK™›Ü‘XXÚ
+Oˆ˜Û\ÜÓ\İœ™[[İ™J	ØXİ]™IÊJNÂˆØİ[Y[™Ù][[Y[RY
+	Ü[™[IÊÛ˜[YJK˜Û\ÜÓ\İ˜Y
+	ØXİ]™IÊNÂˆBˆ[˜İ[ÛˆÙÙÛJXY\ŠHÈXY\‹œ\™[[[Y[˜Û\ÜÓ\İÙÙÛJ	ÛÜ[‰ÊNÈBˆÛÛœİ[ÜØZXÈHØİ[Y[™Ù][[Y[RY
+	Û[ÜØZXÉÊNÂˆÛÛœİÛÛÜœÈHÉÈÎLYYX™IË	ÈÍØ˜Ù‰Ë	ÈÙ™™™™™‰Ë	İ˜[œÜ\™[	Ë	İ˜[œÜ\™[	Ë	İ˜[œÜ\™[	Ë	İ˜[œÜ\™[	Ë	İ˜[œÜ\™[	×NÂˆ›Üˆ
+]HHÈHÌÈJÊÊHÂˆÛÛœİÙ[HØİ[Y[˜Ü™X]Q[[Y[
+	Ù]‰ÊNÂˆÙ[˜Û\ÜÓ˜[YHH	Û[ÜØZXËXÙ[	ÎÂˆÙ[œİ[K˜˜XÚÙÜ›İ[™HÛÛÜœÖÓX]™›ÛÜŠX]œ˜[™ÛJ
+H
+ˆÛÛÜœË›[™İ
+WNÂˆ[ÜØZXË˜\[™Ú[
+Ù[
+NÂˆBÜØÜš\‚Ø›ÙO>
 </html>
