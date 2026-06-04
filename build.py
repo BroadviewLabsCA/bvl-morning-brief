@@ -4,6 +4,226 @@
 import os
 import re
 import glob
-from datetime import date, datetime
+from datetime import date
 
-LOGO_B64 = "iVBORw0KGgoAAAANSUhEUgAAAoAAAAKCCAYAAABBBWgoAAAACXBIWXMAACxKAAAsSgF3enRNAAAUTUlEQVR4nO3dz3UbV5rG4c8+2mBVRgRUBlQGYkcgZSBOBKOOQHQEpiMQFEFTEQhazqrJCAaKAKwVZqdZgDyW3RbFPwC+uvd7nnN42n3ci3f563tRVT99/fo1AACo4+fsAQAAHJYABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABTzLHsAtGQ9bl5ExHn2DiAiIi4j4vqb/766+bueD7PLjEHQip++fv2avQGasR43JxHxKXsHcC9jbCPxMrZheDkfZsvMQTAVAhAeQABCF64iYnn7Nx9m13f+r6FDAhAeQABClz5HxEVEXMyH2Sp5CxyEAIQHEIDQvauIWETEwskgPfMUMAD84TgifouI9XrcXNz8nz7ojgAEgL/3KiI+rcfNaj1uTtfj5pfsQbArAhAA7nYUEe4jYrUeN2dCkB4IQAC4nyEi3sVNCCZvgScRgADwMENEvLu9Gs4eA48hAAHgcY4i4v163CxvvhIEzRCAAPA0LyPi366FaYkABIDdeLceN5dOA2mBAASA3TkOp4E0QAACwO69u/lt4PPsIfB3BCAA7MfLiLj0NRGmSAACwP4Msf2ayNvsIfAtAQgA+/fbetwsskfALQEIAIfx5uYpYZ+SI50ABIDDOY6IpQgkmwAEgMM6ju33hL0vkDQCEAAOb4jtSaAIJIUABIAcIpA0AhAA8ohAUghAAMglAjk4AQgA+YaIuPB0MIciAAFgGo7CK2I4EAEIANNxHBEX2SPonwAEgGl56bNx7JsABIDpebMeN6fZI+iXAASAaXrvyWD2RQACwHR5Mpi9EIAAMF1HEbHIHkF/BCAATNur9bh5mz2CvghAAJi+s/W4eZ49gn4IQACYviFcBbNDAhAA2vDSVTC7IgABoB1nngpmFwQgALRjiIjz7BG0TwACQFverMfNSfYI2iYAAaA9Z9kDaJsABID2vFyPm9fZI2iXAASANvktII4mAAGgTUfrcXOaPYI2CUAAaJf3AvIoAhAA2nXsiWAeQwACQNucAvJgAhAA2vZqPW6eZ4+gLQIQANp3mj2AtghAAGjfafYA2iIAAaB9R14MzUMIQADogwDk3gQgAPRBAHJvAhAA+jB4JyD3JQABoB9OAbkXAQgA/TjJHkAbBCAA9OPYS6G5DwEIAH15kT2A6ROAANCXk+wBTJ4ABIC+OAHkhwQgAPTlZfYApk4AAkBn1uPGKSB3epY9gHasx81ZRLzL3jEB/8geMBGfsgcA3/UiIi6zRzBdAhAeaD7MltkbpmA9brInAN/3PHsA0+YKGAD64wqYOwlAAOjPL9kDmDYBCAD9cQLInQQgAPRnyB7AtAlAAOjQety4Bua7BCAA9Mk1MN8lAAEAihGAAADFCEAAgGIEIABAMQIQAPr0PHsA0yUAAaBPz7MHMF0CEAD6dJk9gOkSgADQp+vsAUyXAAQAKEYAAgAUIwABAIoRgAAAxQhAAOjQfJgtszcwXQIQAKAYAQgA/fmSPYBpE4AA0J9V9gCmTQACQH9W2QOYNgEIAP1ZZQ9g2gQgAPTHd4C5kwAEgP6ssgcwbQIQADozH2ZOALmTAASAvnzOHsD0CUAA6IvTP35IAAJAX5bZA5g+AQgAfVlmD2D6BCAA9ONqPsyus0cwfQIQAPqxzB5AGwQgAPRjkT2ANghAAOjD6P1/3JcABIA+XGQPoB0CEAD6sMgeQDsEIAC074t8mC2zR9AOAQgA7VtkD6AtAhAA2rfIHkBbBCAAtO3jfJitskfQFgEIAG07zx5AewQgALTLwx88igAEgHadZQ+gTQIQANr0ZT7MFtkjaJMABIA2nWUPoF0CEADa4/SPJxGAANCe0+wBtE0AAkBbPnvyl6cSgADQltPsAbRPAAJAO3711Q92QQACQBuu5sPsLHsEfRCAANCG0+wB9EMAAsD0/TofZpfZI+iHAASAaXP1y84JQACYrjEiXmePoD8CEACm69RTv+yDAASAafp9PswuskfQJwEIANPzeT7M3maPoF8CEACm5Sr87o89E4AAMB1jRLyeD7Pr7CH0TQACwDSMEXHioQ8OQQACQL7b+POyZw5CAAJAvrfij0MSgACQ67/mw2yRPYJanmUPAICixti+6Nm7/jg4AQgAh+c3f6RyBQwAhyX+SCcAAeBwriLiufgjmwAEgMP4ENuTPy95Jp3fAALA/v1zPszOs0fALQEIAPtz+2m3ZfYQ+JYrYADYj8+x/b3fMnsI/JUABIDdGmN75ev3fkyWK2AA2J3PsX254yp7CNxFAALA042x/Z7vInsI3IcrYAB4mt9j+1u/RfYQuC8ngADwOK57aZYABICH+RwRZ57upWUCEADu52NEnAs/eiAAAeD7xoi4iO2J3yp5C+yMAASA//Q5IhYRceFdfvRIAALA1lX8EX2r3CmwXwIQgKrGiFjG9op3KfqoRAACUMVVRFze/C3nw+wyeQ+kEYAA9OQqIq4jYnXzdxkR157chT8TgAC07jb6Iv4Iv+vYxt/K1S74JwEIQOuOv/nnl3/9l+txE7F9qvfb69/VQZbBRAlAACp4Gd/E4XrcfIntAyDLEIQUJAABqOgoIt7c/MV63HgFDKX8nD0AACbgOCJ+i4j/XY+by/W4OV2Pm1+yR4G+CEAA+LPjiHgfEev1uFmsx42L7EGwawIQAL7vTUT8ez1ulutxc5I9BnZFAALAj72MiE/rcbNaj5vX2WPgqQQgANzfUUT4y4kgrROAAPBwtyeCF+tx4zx7DDyUAASAx3sV2yeHz7KHwEMIQAB4unc3vw84yR4C9yEAAWA3jmJ7LXyePQR+RAACwG79983LpL0/kMkSgACwe4cRsVyPm9PsIfB3BCAA7McQEe/X42aRPQT+SgACwH69ubkS9m1hJkMAAsD+HUfEyu8CmQoBCACHMcT2d4En2UNAAALA4QyxfVXMafYQahOAAHB470UgmQQgAOQQgaQRgACQRwSSQgACQC4RyMEJQADIJwI5KAEIANMgAjkYAQgA03HuZdEcggAEgOm4fVn08+wh9E0AAsC0DBFx4dvB7JMABIDpOY6IRfYI+iUAAWCaXq3HzVn2CPokAAFgut6tx41J9gj4IwABYNoWfg/IrglAAJi2o/B7QHZMAALA9L1aj5vX2SPohwAEgDa4CmZnBCAAtGEIV4HsiAAEgHa48lQwuyAAAaAti+wBtE8AAkBbjtbj5m32CNomAAGgPWceCOEpBCAAtGeICKeAPJoABIA2vXUKyGMJQABok1NAHk0AAkC7nALyKAIQANo1RIRPxPFgAhAA2naWPYD2CEAAaNuRr4PwUAIQANp3mj2AtghAAGjfGw+D4BACEAD64GEQ7k0AAkAfBCD3JgABoA+vXANzXwIQAPrhFJB7EYAA0I+T7AG0QQACQD+cAHIvAhAA+jGsx42L7BFMnwAEgL6cZA9g+gQgAPTlJHsA0ycAAaAvroD5IQEIAH054j5AfkQAAkB/nAJyJwEIAP0RgNxJAAJAf1wBcycBCAD9OckewLQJQADojxNA7iQAAaA/x9kDmDYBCABQjAAEgA6tx43z7A1MlwAEgD49zx7AdAlAAIBiBCAAQDECEACgGAEIAFCMAASAPp1kD2C6BCAA9Ok6ewDTJQABoE+X2QOYLgEIAFCMAAQAKEYAAgAUIwABAIoRgADQp1X2AKZLAAJAh+bDbJW9gekSgAAAxQhAAOjPVfYApk0AAkB/fAWEOwlAAOiPr4BwJwEIAP1ZZQ9g2gQgAPTHCSB3epY9AGjWr9kDKO9d9oAJE4DcSQACjzIfZmfZG6htPW4E4N/7Mh9mHgLhTq4AAaAvTv/4IQEIAH0RgPyQAASAviyzBzB9AhAAOjIfZsvsDUyfAASAfnzMHkAbBCAA9GOZPYA2CEAA6MdF9gDaIAABoA9X42G4yh5BGwQgAPRhkT2AdghAAOiD61/uTQACQPtc//IgAhAA2neePYC2CEAAaNsYrn95IAEIAG1bzIfZdfYI2iIAAaBtrn95MAEIAO364OEPHkMAAkC7nP7xKAIQANr0eT7MLrNH0CYBCABteps9gHYJQABozwenfzyFAASAtowRcZY9grYJQABoy7knf3kqAQgA7fgSnvxlBwQgALTj1Fc/2AUBCABt+DgfZsvsEfRBAALA9I0RcZo9gn4IQACYvteuftklAQgA0/a7q192TQACwHRdzYeZL34wcwIQAKZpjIjX2SPokwAEgGl67YXP7IsABIDp+aff/bFPAhAApuXDfJj52gd7JQABYDo+zofZafYI+icAAWAarsLLnjkQAQgA+a4i4sTLnjkUAQgAucQfBycAASCP+COFAASAHOKPNAIQAA5P/JHqWfYAACjmg1e9kM0JIAAczq/ijylwAggA+zdGxNv5MFtkD4EIAQgA+3YVEafzYXaZPQRuuQIGgP35GNuHPcQfk+IEEAB2z5UvkyYAAWC3Psf2yneVPQS+RwACwG6MEXE2H2bn2UPgRwQgADzdx9he+a6yh4B9CEAAeLyr2IbfMnsIPIQABICH+xLb695F9hB4DAEIAPcn/OiCAASAH7uKiHPhRy4EIAB434eIWPiNH70RgADwZ1cRcR4RF/Nhdp09BvZBAALA9uXNF7GNvlXyFtg7AQhARVcRsbz9c9JHNQIQgN5dRcQqIi5jG3yXgo/qBCA40HrcnGRvgMJ+iYgXN//4PxHxf9/8u+XNf65u/1znwt4TgPBwn7IHABER8Q9P54Lj/Jw9AACAwxKAAADECEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgAC0KpfsgdAqwQgAK16kT0AWiUAAQCKEYAAAMUIQACAYgQgAEAxAhAAoBgBCABQjAAEAChGAAIAFCMAAQCKEYAAAMUIQACAYgQgAEAxAhAAoBgBCABQjAAEAChGAAIAFCMAAQCKEYAAAMUIQACAYgQgAEAxAhAAoBgBCABQjAAEAChGAAIAFCMAAQCKEYAAAMUIQAAAYpAAAAABJRU5ErkJggg=="
+LOGO_B64 = "iVBORw0KGgoAAAANSUhEUgAAAoAAAAKCCAYAAABBBWgoAAAACXBIWXMAACxKAAAsSgF3enRNAAAUTUlEQVR4nO3dz3UbV5rG4c8+2mBVRgRUBlQGYkcgZSBOBKOOQHQEpiMQFEFTEQhazqrJCAaKAKwVZqdZgDyW3RbFPwC+uvd7nnN42n3ci3f563tRVT99/fo1AACo4+fsAQAAHJYABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABTzLHsAtGQ9bl5ExHn2DiAiIi4j4vqb/766+bueD7PLjEHQip++fv2avQGasR43JxHxKXsHcC9jbCPxMrZheDkfZsvMQTAVAhAeQABCF64iYnn7Nx9m13f+r6FDAhAeQABClz5HxEVEXMyH2Sp5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EYAAAMUIQACAYp5lD6Apy+wBAN9YZg+AVv309evX7A0AAByQK2AAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKCY/weIDNHXwdDCAgAAAABJRU5ErkJggg=="
+
+CSS = """
+  :root { --navy: #0d1b3e; --navy-card: #132050; --navy-border: #1e2f60; --mint: #91eebe; --mint-dim: rgba(145,238,190,0.12); --mint-border: rgba(145,238,190,0.25); --purple: #7b6cf6; --white: #ffffff; --white-70: rgba(255,255,255,0.7); --white-40: rgba(255,255,255,0.4); --white-15: rgba(255,255,255,0.08); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--navy); color: var(--white); min-height: 100vh; }
+  .mosaic { position: fixed; top: 0; right: 0; width: 180px; height: 160px; pointer-events: none; opacity: 0.15; z-index: 0; display: grid; grid-template-columns: repeat(9, 18px); grid-template-rows: repeat(8, 18px); gap: 2px; padding: 12px; }
+  .mosaic-cell { border-radius: 2px; }
+  .topbar { position: sticky; top: 0; z-index: 10; background: rgba(13,27,62,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--navy-border); padding: 0 28px; }
+  .topbar-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0 0; flex-wrap: wrap; gap: 8px; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-mark { width: 32px; height: 32px; flex-shrink: 0; filter: brightness(0) invert(1); }
+  .brand-text h1 { font-size: 15px; font-weight: 700; color: var(--white); letter-spacing: -0.2px; line-height: 1; }
+  .brand-text .tagline { font-size: 11px; color: var(--white-40); margin-top: 2px; }
+  .date-badge { font-size: 11px; font-weight: 600; color: var(--mint); background: var(--mint-dim); border: 1px solid var(--mint-border); padding: 4px 10px; border-radius: 20px; }
+  .tabs { display: flex; margin-top: 12px; overflow-x: auto; }
+  .tab { padding: 10px 18px; border: none; background: transparent; font-size: 11px; font-weight: 700; cursor: pointer; color: var(--white-40); border-bottom: 2px solid transparent; transition: all 0.15s; white-space: nowrap; letter-spacing: 0.5px; text-transform: uppercase; }
+  .tab:hover { color: var(--white-70); }
+  .tab.active { color: var(--mint); border-bottom: 2px solid var(--mint); }
+  .content { padding: 28px; max-width: 900px; position: relative; z-index: 1; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  .day-block { margin-bottom: 36px; }
+  .day-header { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--navy-border); }
+  .day-label { font-size: 22px; font-weight: 800; color: var(--white); letter-spacing: -0.5px; }
+  .day-label .weekday { font-size: 13px; font-weight: 500; color: var(--white-40); margin-left: 8px; }
+  .today-badge { font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 20px; background: var(--mint); color: var(--navy); letter-spacing: 0.5px; text-transform: uppercase; }
+  .story-card { background: var(--navy-card); border-radius: 10px; border: 1px solid var(--navy-border); overflow: hidden; margin-bottom: 8px; transition: border-color 0.15s; }
+  .story-card:hover { border-color: var(--mint-border); }
+  .story-card-header { display: flex; align-items: center; justify-content: space-between; padding: 13px 18px; cursor: pointer; user-select: none; }
+  .section-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--mint); }
+  .chevron { font-size: 11px; color: var(--white-40); transition: transform 0.2s; }
+  .story-card.open .chevron { transform: rotate(180deg); }
+  .story-card-body { display: none; padding: 0 18px 16px; font-size: 13px; line-height: 1.7; color: var(--white-70); border-top: 1px solid var(--navy-border); }
+  .story-card.open .story-card-body { display: block; }
+  .story-card-body h4 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--purple); margin-top: 18px; margin-bottom: 10px; padding-top: 18px; border-top: 1px solid var(--white-15); }
+  .story-card-body h4:first-child { margin-top: 16px; padding-top: 0; border-top: none; }
+  .story-card-body ul { list-style: none; padding: 0; }
+  .story-card-body ul li { padding: 9px 0 9px 18px; position: relative; border-bottom: 1px solid var(--white-15); font-size: 13px; line-height: 1.65; color: var(--white-70); }
+  .story-card-body ul li:last-child { border-bottom: none; }
+  .story-card-body ul li::before { content: ''; position: absolute; left: 0; top: 18px; width: 6px; height: 1px; background: var(--mint); opacity: 0.6; }
+  .story-card-body a { color: var(--mint); text-decoration: none; font-size: 11px; font-weight: 600; opacity: 0.85; }
+  .story-card-body a:hover { opacity: 1; text-decoration: underline; }
+  .story-card-body strong { font-weight: 700; color: var(--white); }
+  .story-card-body p { margin-bottom: 10px; color: var(--white-70); }
+  .no-brief { background: var(--navy-card); border: 1px dashed var(--navy-border); border-radius: 10px; padding: 36px 24px; text-align: center; color: var(--white-40); font-size: 13px; }
+  .no-brief strong { display: block; font-size: 15px; color: var(--white-70); margin-bottom: 6px; }
+  .footer { padding: 24px 28px; border-top: 1px solid var(--navy-border); font-size: 11px; color: var(--white-40); display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; }
+  .footer a { color: var(--mint); text-decoration: none; opacity: 0.7; }
+  .footer a:hover { opacity: 1; }
+"""
+
+JS = """
+  function switchTab(name) {
+    const names = ['bausch','ai','xifaxan','arestin','weekly'];
+    document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', names[i]===name));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-'+name).classList.add('active');
+  }
+  function toggle(header) { header.parentElement.classList.toggle('open'); }
+  const mosaic = document.getElementById('mosaic');
+  const colors = ['#91eebe','#7b6cf6','#ffffff','transparent','transparent','transparent','transparent','transparent'];
+  for (let i = 0; i < 72; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'mosaic-cell';
+    cell.style.background = colors[Math.floor(Math.random() * colors.length)];
+    mosaic.appendChild(cell);
+  }
+"""
+
+def md_to_html(md):
+    if not md:
+        return '<div class="no-brief"><strong>No brief available</strong>Check back tomorrow.</div>'
+    md = re.sub(r'^---[\s\S]*?---\n?', '', md)
+    md = re.sub(r'^# .+\n?', '', md, flags=re.MULTILINE)
+    md = re.sub(r'\*Generated by.*\*', '', md)
+    lines = md.strip().split('\n')
+    cards = []
+    current_section = None
+    current_body = []
+    section_count = 0
+
+    def flush_section():
+        nonlocal section_count
+        if current_section is None:
+            return
+        body_html = render_body(current_body)
+        open_class = ' open' if section_count < 2 else ''
+        cards.append(f'<div class="story-card{open_class}"><div class="story-card-header" onclick="toggle(this)"><span class="section-label">{current_section}</span><span class="chevron">&#9660;</span></div><div class="story-card-body">{body_html}</div></div>')
+        section_count += 1
+
+    def render_body(body_lines):
+        html = []
+        in_ul = False
+        for line in body_lines:
+            line = line.rstrip()
+            if not line:
+                continue
+            if line.startswith('### ') or line.startswith('#### '):
+                if in_ul: html.append('</ul>'); in_ul = False
+                text = re.sub(r'^#{3,4} ', '', line)
+                html.append(f'<h4>{md_inline(text)}</h4>')
+            elif line.startswith('- ') or line.startswith('* '):
+                if not in_ul: html.append('<ul>'); in_ul = True
+                html.append(f'<li>{md_inline(line[2:])}</li>')
+            else:
+                if in_ul: html.append('</ul>'); in_ul = False
+                html.append(f'<p>{md_inline(line)}</p>')
+        if in_ul: html.append('</ul>')
+        return '\n'.join(html)
+
+    def md_inline(text):
+        text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
+        text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'<a href="\2" target="_blank">\1 &#8599;</a>', text)
+        text = re.sub(r'\*([^*]+)\*', r'<em>\1</em>', text)
+        return text
+
+    for line in lines:
+        if line.startswith('## '):
+            flush_section()
+            current_section = line[3:].strip()
+            current_body = []
+        elif current_section is not None:
+            current_body.append(line)
+    flush_section()
+    return '\n'.join(cards) if cards else '<div class="no-brief"><strong>No content</strong></div>'
+
+def find_latest(pattern):
+    files = sorted(glob.glob(pattern))
+    return files[-1] if files else None
+
+def read_brief(path):
+    if path and os.path.exists(path):
+        return open(path).read()
+    return None
+
+def format_long_date(d):
+    months = ['January','February','March','April','May','June','July','August','September','October','November','December']
+    return f"{months[d.month-1]} {d.day}, {d.year}"
+
+def format_weekday(d):
+    days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+    return days[d.weekday()]
+
+def format_badge(d):
+    days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
+    months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+    return f"{days[d.weekday()]} {months[d.month-1]} {d.day}, {d.year}"
+
+def build():
+    briefs_dir = os.path.join(os.path.dirname(__file__), 'briefs')
+    today = date.today()
+
+    bausch  = read_brief(find_latest(f'{briefs_dir}/bausch-brief-*.md'))
+    ai      = read_brief(find_latest(f'{briefs_dir}/ai-brief-*.md'))
+    xifaxan = read_brief(find_latest(f'{briefs_dir}/xifaxan-brief-*.md'))
+    arestin = read_brief(find_latest(f'{briefs_dir}/arestin-brief-*.md'))
+    weekly  = read_brief(find_latest(f'{briefs_dir}/best-of-week-*.md'))
+
+    long_date = format_long_date(today)
+    weekday   = format_weekday(today)
+    badge     = format_badge(today)
+
+    no_content = '<div class="no-brief"><strong>No brief for today yet</strong>Runs weekdays at 7 AM.</div>'
+
+    def panel(name, content, active=False):
+        inner = md_to_html(content) if content else no_content
+        active_class = ' active' if active else ''
+        return f'<div class="panel{active_class}" id="panel-{name}"><div class="day-block"><div class="day-header"><div class="day-label">{long_date} <span class="weekday">{weekday}</span></div><span class="today-badge">Today</span></div>{inner}</div></div>'
+
+    weekly_inner = md_to_html(weekly) if weekly else '<div class="no-brief"><strong>Best Of arrives Fridays</strong>The weekly digest runs every Friday at 7 AM.</div>'
+    weekly_panel = f'<div class="panel" id="panel-weekly">{weekly_inner}</div>'
+
+    html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BVL Morning Brief</title>
+<style>{CSS}</style>
+</head>
+<body>
+<div class="mosaic" id="mosaic"></div>
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <img class="brand-mark" src="data:image/png;base64,{LOGO_B64}" alt="BVL">
+      <div class="brand-text"><h1>BVL Morning Brief</h1><div class="tagline">Broadview Labs Intelligence</div></div>
+    </div>
+    <div class="date-badge">{badge}</div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('bausch')">Bausch Health</button>
+    <button class="tab" onclick="switchTab('ai')">AI for BVL</button>
+    <button class="tab" onclick="switchTab('xifaxan')">Xifaxan</button>
+    <button class="tab" onclick="switchTab('arestin')">Arestin</button>
+    <button class="tab" onclick="switchTab('weekly')">Best Of Week</button>
+  </div>
+</div>
+<div class="content">
+  {panel('bausch', bausch, active=True)}
+  {panel('ai', ai)}
+  {panel('xifaxan', xifaxan)}
+  {panel('arestin', arestin)}
+  {weekly_panel}
+</div>
+<div class="footer">
+  <span>&#169; Broadview Labs &#183; GM Partner Intelligence System</span>
+  <a href="https://www.broadviewlabs.ca" target="_blank">broadviewlabs.ca &#8599;</a>
+</div>
+<script>{JS}</script>
+</body>
+</html>"""
+
+    out = os.path.join(os.path.dirname(__file__), 'index.html')
+    with open(out, 'w') as f:
+        f.write(html)
+    print(f"Built index.html ({len(html)} bytes)")
+
+if __name__ == '__main__':
+    build()
