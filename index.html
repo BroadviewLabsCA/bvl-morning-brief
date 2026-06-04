@@ -13,15 +13,14 @@
   .topbar { position: sticky; top: 0; z-index: 10; background: rgba(13,27,62,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--navy-border); padding: 0 28px; }
   .topbar-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0 0; flex-wrap: wrap; gap: 8px; }
   .brand { display: flex; align-items: center; gap: 12px; }
-  .brand-mark { width: 28px; height: 28px; flex-shrink: 0; }
+  .brand-mark { width: 32px; height: 32px; flex-shrink: 0; filter: brightness(0) invert(1); }
   .brand-text h1 { font-size: 15px; font-weight: 700; color: var(--white); letter-spacing: -0.2px; line-height: 1; }
   .brand-text .tagline { font-size: 11px; color: var(--white-40); margin-top: 2px; }
   .date-badge { font-size: 11px; font-weight: 600; color: var(--mint); background: var(--mint-dim); border: 1px solid var(--mint-border); padding: 4px 10px; border-radius: 20px; }
-  .tabs { display: flex; margin-top: 12px; }
-  .tab { padding: 10px 20px; border: none; background: transparent; font-size: 11px; font-weight: 700; cursor: pointer; color: var(--white-40); border-bottom: 2px solid transparent; transition: all 0.15s; white-space: nowrap; letter-spacing: 0.5px; text-transform: uppercase; }
+  .tabs { display: flex; margin-top: 12px; overflow-x: auto; }
+  .tab { padding: 10px 18px; border: none; background: transparent; font-size: 11px; font-weight: 700; cursor: pointer; color: var(--white-40); border-bottom: 2px solid transparent; transition: all 0.15s; white-space: nowrap; letter-spacing: 0.5px; text-transform: uppercase; }
   .tab:hover { color: var(--white-70); }
   .tab.active { color: var(--mint); border-bottom: 2px solid var(--mint); }
-  .tab .count { display: inline-block; background: var(--mint-dim); color: var(--mint); font-size: 9px; font-weight: 700; padding: 1px 6px; border-radius: 20px; margin-left: 5px; vertical-align: middle; border: 1px solid var(--mint-border); }
   .content { padding: 28px; max-width: 900px; position: relative; z-index: 1; }
   .panel { display: none; }
   .panel.active { display: block; }
@@ -48,7 +47,6 @@
   .story-card-body a:hover { opacity: 1; text-decoration: underline; }
   .story-card-body strong { font-weight: 700; color: var(--white); }
   .story-card-body p { margin-bottom: 10px; color: var(--white-70); }
-  .prompt-block { background: var(--white-15); border-left: 3px solid var(--mint); padding: 12px 16px; border-radius: 0 6px 6px 0; font-size: 12px; color: var(--white-70); line-height: 1.65; margin-top: 10px; font-style: italic; }
   .no-brief { background: var(--navy-card); border: 1px dashed var(--navy-border); border-radius: 10px; padding: 36px 24px; text-align: center; color: var(--white-40); font-size: 13px; }
   .no-brief strong { display: block; font-size: 15px; color: var(--white-70); margin-bottom: 6px; }
   .footer { padding: 24px 28px; border-top: 1px solid var(--navy-border); font-size: 11px; color: var(--white-40); display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; }
@@ -61,319 +59,25 @@
 <div class="topbar">
   <div class="topbar-inner">
     <div class="brand">
-      <img class="brand-mark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAKCCAYAAABBBWgoAAAACXBIWXMAACxKAAAsSgF3enRNAAAUTUlEQVR4nO3dz3UbV5rG4c8+2mBVRgRUBlQGYkcgZSBOBKOOQHQEpiMQFEFTEQhazqrJCAaKAKwVZqdZgDyW3RbFPwC+uvd7nnN42n3ci3f563tRVT99/fo1AACo4+fsAQAAHJYABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABTzLHsAtGQ9bl5ExHn2DiAiIi4j4vqb/666+bueD7PLjEHQip++fv2avQGasR43JxHxKXsHcC9jbCPxMrZheDkfZsvMQTAVAhAeQABCF64iYnn7Nx9m13f+r6FDAhqeQABClz5HxEVEXMyH2Sp5CxyEAIQHEIDQvauIWETEwskgPfMUMAD84TgifguI9XrcXNz8nz7ojgAEgL/3KiI+rcfNaj1uTtfj5pfsQbArAhAA7nYUEe8jYrUeN2dCkB4IQAC4nyEi3sVNCCZvgScRgADwMENEvLu9Gs4eA48hAAHgcY4i4v163CxvvhIEzRCAAPA0LyPi364FaYkABIDdebceN5dOA2mBAASA3TkOp4E0QAACwO69u/lt4PPsIfB3BCAA7MfLiLj0NRGmSAACwP4Msf2ayNvsIfAtAQgA+/fbetysskfALQEIAIfx5uYpYZ+SI50ABIDDEYMAAAB0SURBVIQHEIDQvauIWETEwskgPfMUMAD84TgifguI9XrcXNz8nz7ojgAEgL/3KiI+rcfNaj1uTtfj5pfsQbArAhAA7nYUEe8jYrUeN2dCkB4IQAC4nyEi3sVNCCZvgScRgADwMENEvLu9Gs4eA48hAAHgcY4i4v163CxvvhIEzRCAAPA0LyPi364FaYkABIDdebceN5dOA2mBAASA3TkOp4E0QAACwO69u/lt4PPsIfB3BCAA7MfLiLj0NRGmSAACwP4Msf2ayNvsIfAtAQgA+/fbetyskdAKAAAAAElFTkSuQmCC" alt="BVL">
+      <img class="brand-mark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAKCCAYAAABBBWgoAAAACXBIWXMAACxKAAAsSgF3enRNAAAUTUlEQVR4nO3dz3UbV5rG4c8+2mBVRgRUBlQGYkcgZSBOBKOOQHQEpiMQFEFTEQhazqrJCAaKAKwVZqdZgDyW3RbFPwC+uvd7nnN42n3ci3f563tRVT99/fo1AACo4+fsAQAAHJYABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABTzLHsAtGQ9bl5ExHn2DiAiIi4j4vqb/766+bueD7PLjEHQip++fv2avQGasR43JxHxKXsHcC9jbCPxMrZheDkfZsvMQTAVAhAeQABCF64iYnn7Nx9m13f+r6FDAhAeQABClz5HxEVEXMyH2Sp5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EYAAAMUIQACAYp5lD6Apy+wBAN9YZg+AVv309evX7A0AAByQK2AAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKAYAQgAUIwABAAoRgACABQjAAEAihGAAADFCEAAgGIEIABAMQIQAKCY/weIDNHXwdDCAgAAAABJRU5ErkJggg==" alt="BVL">
       <div class="brand-text"><h1>BVL Morning Brief</h1><div class="tagline">Broadview Labs Intelligence</div></div>
     </div>
-    <div class="date-badge">Wed Jun 3, 2026</div>
+    <div class="date-badge">Thu Jun 4, 2026</div>
   </div>
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('bausch')">Bausch Health <span class="count">3</span></button>
-    <button class="tab" onclick="switchTab('ai')">AI for BVL <span class="count">5</span></button>
-    <button class="tab" onclick="switchTab('xifaxan')">Xifaxan <span class="count">4</span></button>
+    <button class="tab active" onclick="switchTab('bausch')">Bausch Health</button>
+    <button class="tab" onclick="switchTab('ai')">AI for BVL</button>
+    <button class="tab" onclick="switchTab('xifaxan')">Xifaxan</button>
+    <button class="tab" onclick="switchTab('arestin')">Arestin</button>
     <button class="tab" onclick="switchTab('weekly')">Best Of Week</button>
   </div>
 </div>
 <div class="content">
-
-  <!-- BAUSCH PANEL -->
-  <div class="panel active" id="panel-bausch">
-    <div class="day-block">
-      <div class="day-header">
-        <div class="day-label">June 3, 2026 <span class="weekday">Wednesday</span></div>
-        <span class="today-badge">Today</span>
-      </div>
-
-      <div class="story-card open">
-        <div class="story-card-header" onclick="toggle(this)">
-          <span class="section-label">Top Stories</span>
-          <span class="chevron">&#9660;</span>
-        </div>
-        <div class="story-card-body">
-          <ul>
-            <li><strong>B+L R&amp;D Teach-In signals contact lens pipeline push (June 1):</strong> CMO Yehia Hashad led a public webinar highlighting two pipeline assets: a bioactive contact lens using polymerized hyaluronic acid (described as first-of-its-kind) and a silicone hydrogel daily lens designed to slow myopia progression. This is a deliberate investor/market signaling move ahead of the Goldman Sachs Healthcare Conference. <a href="https://www.stocktitan.net/news/BLCO/bausch-lomb-announces-second-r-d-teach-in-fhrybpmfj3i6.html" target="_blank">StockTitan &#8599;</a></li>
-            <li><strong>B+L launches Blink Triple Care Preservative Free (late May/early June):</strong> New multi-dose PF dry eye drop now rolling out at Amazon, CVS, Target, and Walgreens through end of June. Extends the Blink franchise into the growing preservative-free OTC segment. <a href="https://www.biospace.com/press-releases/bausch-lomb-launches-blink-triple-care-preservative-free-lubricant-eye-drops-in-the-united-states" target="_blank">BioSpace &#8599;</a> | <a href="https://www.optometrytimes.com/view/bausch-lomb-launches-preservative-free-version-of-blink-triple-care-eye-drops" target="_blank">Optometry Times &#8599;</a></li>
-            <li><strong>Solta Medical earns Thermage AAA Trademark in China (May 28):</strong> China Trademark Association granted Thermage the AAA Well-Known Trademark Certification — only 217 brands in mainland China hold it. Follows Solta's acquisition of its Chinese distributor (Shibo group) in late 2025. Significant for brand protection and premium positioning in the Chinese aesthetics market. <a href="https://www.prnewswire.com/news-releases/bausch-healths-aesthetic-business-solta-medical-earns-prestigious-trademark-certification-of-thermage-in-china-302784868.html" target="_blank">PR Newswire &#8599;</a></li>
-            <li><strong>BHC Q1 2026 earnings beat — 12th consecutive quarter of growth:</strong> Revenue $2.52B (vs. $2.42B forecast); EPS $0.78 (vs. $0.68). Adjusted EBITDA up 27% YoY. Salix and Solta led segment performance. Full-year guidance: $5.25–5.40B revenue. <a href="https://www.investing.com/news/transcripts/earnings-call-transcript-bausch-health-beats-q1-2026-earnings-estimates-93CH-4647295" target="_blank">Investing.com &#8599;</a> | <a href="https://www.fool.com/earnings/call-transcripts/2026/04/29/bausch-health-bhc-q1-2026-earnings-transcript/" target="_blank">Motley Fool transcript &#8599;</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="story-card open">
-        <div class="story-card-header" onclick="toggle(this)">
-          <span class="section-label">Brand Highlights</span>
-          <span class="chevron">&#9660;</span>
-        </div>
-        <div class="story-card-body">
-          <h4>Bausch + Lomb</h4>
-          <ul>
-            <li>June 1 R&amp;D teach-in detailed myopia-control and bioactive contact lens pipeline; CEO Brent Saunders and CMO Hashad presenting at Goldman Sachs 47th Annual Healthcare Conference in Miami on June 9.</li>
-            <li>Blink Triple Care PF launch expanding OTC dry eye footprint across major retail channels.</li>
-            <li><a href="https://ir.bausch.com/press-releases/bausch-lomb-highlight-company-transformation-and-growth-strategy-investor-day" target="_blank">Investor Day announced &#8599;</a> to highlight company transformation and growth strategy — date TBC.</li>
-          </ul>
-          <h4>Solta Medical</h4>
-          <ul>
-            <li>Thermage AAA China trademark win strengthens IP position following the Shibo distribution acquisition. China remains a key growth market for aesthetics.</li>
-            <li>Thermage has now completed 5 million treatments globally (milestone announced Sept 2025 but still being cited in recent coverage). <a href="https://www.dermatologytimes.com/view/thermage-surpasses-5-million-aesthetic-treatments-solta-medical-announces" target="_blank">Dermatology Times &#8599;</a></li>
-          </ul>
-          <h4>Ortho Dermatologics</h4>
-          <ul>
-            <li>Biafine Skin Recovery Emulsion now available via Amazon and the Ortho Dermatologics Direct platform (launched April 14) — French heritage skincare brand entering U.S. e-commerce channel.</li>
-            <li>2026 ASPIRE HIGHER Scholarship applications close June 10 — six $10K awards for students with dermatologic conditions. <a href="https://www.prnewswire.com/news-releases/bausch-health-announces-ortho-dermatologics-2026-aspire-higher-scholarship-program-302725288.html" target="_blank">PR Newswire &#8599;</a></li>
-          </ul>
-          <h4>Salix Pharmaceuticals</h4>
-          <ul>
-            <li>No significant breaking news in the last 72 hours. Segment performance cited as a driver of BHC's Q1 earnings beat; watch for any Xifaxan competitive or regulatory updates.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="story-card">
-        <div class="story-card-header" onclick="toggle(this)">
-          <span class="section-label">On the Radar</span>
-          <span class="chevron">&#9660;</span>
-        </div>
-        <div class="story-card-body">
-          <ul>
-            <li><strong>Goldman Sachs Healthcare Conference (June 9):</strong> B+L CEO Saunders and CMO Hashad in a fireside chat. Likely to reinforce pipeline messaging from the June 1 R&amp;D teach-in. Worth monitoring for any off-script disclosures or guidance commentary.</li>
-            <li><strong>Solta China strategy:</strong> The combination of the Shibo acquisition (direct distribution) + Thermage trademark win suggests an accelerated push in China. Watch for pricing/volume disclosures in Q2 results.</li>
-            <li><strong>BHC separation narrative:</strong> With B+L trading separately (BLCO) and Solta previously discussed as a potential spin, investor attention remains on whether BHC's portfolio structure changes. No new developments this week, but worth watching given the earnings momentum.</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- AI PANEL -->
-  <div class="panel" id="panel-ai">
-    <div class="day-block">
-      <div class="day-header">
-        <div class="day-label">June 3, 2026 <span class="weekday">Wednesday</span></div>
-        <span class="today-badge">Today</span>
-      </div>
-
-      <div class="story-card open">
-        <div class="story-card-header" onclick="toggle(this)">
-          <span class="section-label">Must-Know Today</span>
-          <span class="chevron">&#9660;</span>
-        </div>
-        <div class="story-card-body">
-          <ul>
-            <li><strong>Pharma digital spend officially overtakes TV — and AI is eating the new budget.</strong> For the first time, digital ad spend in pharma exceeds linear TV spend in 2026. Digital video and display are up 70% YoY; AI-integrated media/search up 50%. For BVL, this is the tailwind that justifies investing in AI-native production now — clients are moving budgets, and agencies that can't produce digital-first at speed will lose ground. <a href="https://www.mmm-online.com/features/healthcare-marketers-trend-report-2026-digital-ad-spend-overtakes-linear-tv/" target="_blank">MMM Online &#8599;</a></li>
-            <li><strong>AI-generated pharma content still requires full regulatory compliance — no shortcuts.</strong> If content is promotional, FDA rules on fair balance, claim support, and misleading impressions apply whether a human or model wrote the draft. This is now being explicitly called out in agency guidance. BVL must ensure every AI-assisted pharma deliverable still runs through the same compliance/PRC review process. <a href="https://blog.madebyxds.com/ai-generated-pharma-content-fda-compliance-2026" target="_blank">XDS Blog &#8599;</a></li>
-            <li><strong>Trump executive order could change AI model release timelines.</strong> A new US executive order asks major AI companies (Anthropic, OpenAI, Google) to provide early model access for government cybersecurity testing before public launch. If implemented, this could slow future model rollouts — worth tracking as BVL's AI tooling depends on access to frontier models. <a href="https://www.businesstoday.in/technology/artificial-intelligence/story/trumps-new-ai-order-could-change-how-openai-google-and-anthropic-launch-models-534614-2026-06-03" target="_blank">BusinessToday &#8599;</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="story-card open">
-        <div class="story-card-header" onclick="toggle(this)">
-          <span class="section-label">Tools &amp; Creative AI</span>
-          <span class="chevron">&#9660;</span>
-        </div>
-        <div class="story-card-body">
-          <ul>
-            <li><strong>AI Digital launches Creative Studio for programmatic ads.</strong> Coordinates generative AI to produce TV-grade video, audio, and display banners — then formats and adjusts them for different placements automatically. This is a meaningful production capability for agencies running programmatic campaigns. <a href="https://martech.org/the-latest-ai-powered-martech-news-and-releases/" target="_blank">MarTech &#8599;</a></li>
-            <li><strong>Claude Design (from Anthropic Labs) is live.</strong> Generates designs, prototypes, slides, and marketing materials from natural-language prompts. Still early, but worth piloting for internal draft production — especially for client presentations. <a href="https://www.mindstudio.ai/blog/code-with-claude-2026-new-agent-features" target="_blank">MindStudio &#8599;</a></li>
-            <li><strong>Google Gemini 3.5 Flash now GA.</strong> Positioned as the fastest multimodal model available via API ($1.50/$9.00 per million tokens). Outperforms Gemini 3.1 Pro on agentic benchmarks at 4x the speed — relevant if BVL is building or evaluating automated workflows. Gemini 3.5 Pro (reasoning) expected in June. <a href="https://wavespeed.ai/blog/posts/june-2026-ai-launch-wave/" target="_blank">WaveSpeed &#8599;</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="story-card">
-        <div class="story-card-header" onclick="toggle(this)">
-          <span class="section-label">Pharma &amp; Healthcare AI</span>
-          <span class="chevron">&#9660;</span>
-        </div>
-        <div class="story-card-body">
-          <ul>
-            <li><strong>Pharma marketers cite brand safety + AI balance as top concern (55%).</strong> Experimentation phase (2025) is over — 2026 is about scaling AI strategies. The push is toward hyper-personalized patient engagement over broad TV. Agencies are expected to advise on this, not just execute. <a href="https://solli.global/solli-hub/pharma-marketing-hits-its-ai-inflection-point-2026/" target="_blank">Solli Global &#8599;</a></li>
-            <li><strong>OpenAI (ChatGPT Health) and Anthropic (Claude for Healthcare) both launched healthcare-specific products.</strong> AI is becoming the primary entry point for health information — shifting where patients and HCPs start their research. Pharma brands need to think about how they show up in AI results, not just search. <a href="https://www.fiercepharma.com/marketing/how-pharma-marketers-are-using-ai-content-creation-efficiency-boosts-while-navigating" target="_blank">Fierce Pharma &#8599;</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="story-card">
-        <div class="story-card-header" onclick="toggle(this)">
-          <span class="section-label">Ops &amp; Automation</span>
-          <span class="chevron">&#9660;</span>
-        </div>
-        <div class="story-card-body">
-          <ul>
-            <li><strong>n8n continues to be the workflow tool of record for small-to-mid agencies.</strong> Strong use cases: content pipelines (research &#8594; draft &#8594; review &#8594; publish), proposal generation from CRM data, lead intake automation. Agencies running these report 10x faster production for repeatable deliverables. Self-hosted option keeps data off third-party servers — relevant for healthcare clients with data sensitivity concerns. <a href="https://blog.n8n.io/we-need-re-learn-what-ai-agent-development-tools-are-in-2026/" target="_blank">n8n Blog &#8599;</a></li>
-            <li><strong>Microsoft unveiled MAI-Code-1-Flash and MAI-Thinking-1.</strong> These are Microsoft's own models, designed to reduce reliance on OpenAI. Not directly relevant to BVL today, but signals that the model market is fragmenting — more options, more price competition ahead. <a href="https://www.cnbc.com/2026/06/02/microsoft-unveils-new-ai-models-lessen-reliance-on-openai-lower-costs.html" target="_blank">CNBC &#8599;</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="story-card">
-        <div class="story-card-header" onclick="toggle(this)">
-          <span class="section-label">Policy &amp; Risk</span>
-          <span class="chevron">&#9660;</span>
-        </div>
-        <div class="story-card-body">
-          <ul>
-            <li><strong>FDA published new AI guidance (Jan 2026) reducing oversight of low-risk AI health software.</strong> The framework is risk-based: tools that assist clinicians without replacing clinical judgment may not require FDA clearance. This creates more room for AI in HCP-facing tools, but promotional content rules remain unchanged — don't conflate the two. <a href="https://www.ropesgray.com/en/insights/alerts/2026/01/fda-adapts-with-the-times-on-digital-health-updated-guidances-on-general-wellness-products" target="_blank">Ropes &amp; Gray &#8599;</a></li>
-            <li><strong>PAAB/Health Canada equivalent guidance is not yet updated</strong> (as of this brief). BVL should assume Canadian promotional AI content still requires the same full review process until explicit guidance is issued.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="story-card">
-        <div class="story-card-header" onclick="toggle(this)">
-          <span class="section-label">BVL Prompt of the Day</span>
-          <span class="chevron">&#9660;</span>
-        </div>
-        <div class="story-card-body">
-          <h4>Compliance-safe AI copy review prompt</h4>
-          <div class="prompt-block">"Review the following [indication/product] promotional copy for Canadian healthcare marketing compliance. Flag any claims that lack adequate substantiation, any missing fair balance language, any implied superiority claims, and any phrasing that could be considered misleading under PAAB guidelines. Do not suggest changes — only flag issues and explain why each is a risk."</div>
-          <p style="margin-top:12px;">Use this as a first-pass QC step before PRC review. It won't replace the human review, but it will catch obvious issues earlier and reduce revision cycles.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- XIFAXAN PANEL -->
-  <div class="panel" id="panel-xifaxan">
-    <div class="day-block">
-      <div class="day-header">
-        <div class="day-label">June 3, 2026 <span class="weekday">Wednesday</span></div>
-        <span class="today-badge">Today</span>
-      </div>
-
-      <div class="story-card open">
-        <div class="story-card-header" onclick="toggle(this)">
-          <span class="section-label">Xifaxan Updates</span>
-          <span class="chevron">&#9660;</span>
-        </div>
-        <div class="story-card-body">
-          <ul>
-            <li><strong>Q1 2026 Revenue Strong — 21% Growth:</strong> Salix reported Q1 2026 revenues of $639M (+$97M / +18% vs. Q1 2025), with Xifaxan specifically posting 21% revenue growth. The core franchise remains healthy despite pipeline setbacks. <a href="https://www.sec.gov/Archives/edgar/data/0000885590/000088559026000051/ex991-q1x2026.htm" target="_blank">Bausch Health Q1 2026 Form 8-K (SEC) &#8599;</a></li>
-            <li><strong>RED-C Phase 3 Program Failed (January 2026):</strong> Both RED-C-3131 and RED-C-3132 — the Phase 3 trials evaluating amorphous-rifaximin SSD for primary prevention of HE in liver cirrhosis — missed their primary endpoints. Enrolled 1,000+ patients across 398 sites in 17 countries. The drug was safe and well-tolerated, but did not significantly delay first HE onset vs. placebo. Bausch is reviewing the dataset for "potential new development opportunities." This was a meaningful pipeline loss: no approved preventative therapy for HE currently exists. <a href="https://www.clinicaltrialsarena.com/news/bausch-health-rifaximin-ssd-hepatic-encephalopathy-phase-iii-miss/" target="_blank">Clinical Trials Arena &#8599;</a> | <a href="https://clival.com/news/bausch-healths-phase-3-red-c-program-for-rifaximin-ssd-misses-primary-endpoint-in-cirrhosis-related-hepatic-encephalopathy" target="_blank">Clival &#8599;</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="story-card open">
-        <div class="story-card-header" onclick="toggle(this)">
-          <span class="section-label">Competitive Intelligence</span>
-          <span class="chevron">&#9660;</span>
-        </div>
-        <div class="story-card-body">
-          <h4>HE (Hepatic Encephalopathy)</h4>
-          <ul>
-            <li><strong>2026 ACG Clinical Guideline — Rifaximin Reinforced:</strong> The ACG published its updated HE guideline in March 2026. Key rifaximin positions: <strong>TIPS prophylaxis</strong> — strong recommendation, initiate rifaximin 14 days pre-TIPS, continue &#8805;6 months; <strong>Recurrent OHE prevention</strong> — conditional recommendation for rifaximin in outpatient setting; <strong>Acute OHE</strong> — guideline suggests adding rifaximin to lactulose (adjunct, not replacement). This guideline update is favorable for Xifaxan's label indications and should support formulary positioning. <a href="https://journals.lww.com/ajg/fulltext/2026/03000/acg_clinical_guideline__hepatic_encephalopathy.12.aspx" target="_blank">ACG Clinical Guideline &#8599;</a> | <a href="https://www.guidelinecentral.com/insights/mar-2026-acg-hepaticencephalopathy-guideline-spotlight/" target="_blank">Guideline Central &#8599;</a></li>
-            <li><strong>Pipeline HE Therapies — Early Stage:</strong> Emerging therapies in the HE pipeline include VE303 (Vedanta Biosciences), YAQ007 (Yaqrit), IV albumin 25% (Grifols), EBX-102 (EnteroBiotix), and GR3027 (Umecrine). None are near approval; market growth projected at modest 1.2% CAGR through 2036. <a href="https://www.globenewswire.com/news-release/2026/05/04/3287025/0/en/Hepatic-Encephalopathy-Market-Set-for-Growth-at-a-1.2-CAGR-Through-2036-Driven-by-Emerging-Therapies-and-Rising-Disease-Burden-DelveInsight.html" target="_blank">GlobeNewswire / DelveInsight &#8599;</a></li>
-            <li><strong>MASTERPIECE Trial (Microbiota Transplant):</strong> A VA-sponsored trial is investigating microbiota transplant capsules for HE prevention in cirrhosis patients. Still in early stages; not a near-term commercial threat but worth monitoring as a non-antibiotic HE approach. <a href="https://www.guidelinecentral.com/insights/may-2026-hepatic-encephalopathy-trial-preview/" target="_blank">Guideline Central — Trial Preview &#8599;</a></li>
-          </ul>
-          <h4>IBS-D</h4>
-          <ul>
-            <li><strong>Ibsrela Growing Fast:</strong> Ardelyx's Ibsrela (tenapanor) posted $274.2M in 2025 sales — 73% growth YoY vs. $158.3M in 2024. Still a fraction of Xifaxan's volume, but the growth trajectory warrants attention. Ibsrela is IBS-C, not IBS-D, but competes for GI prescriber mindshare. <a href="https://xtalks.com/ibs-awareness-month-2026-the-hidden-realities-of-ibs-and-the-ibs-treatment-market-4725/" target="_blank">Xtalks IBS Awareness Month 2026 &#8599;</a></li>
-            <li><strong>Linzess Near Blockbuster:</strong> Linzess (linaclotide, AbbVie/Ironwood) generated $864.5M in US net sales in 2025. Generic linaclotide is now more widely available, adding pricing pressure. Linzess is primarily IBS-C/CIC — indirect competition with Xifaxan in IBS.</li>
-            <li><strong>Viberzi — Stable, Limited Growth:</strong> Viberzi (eluxadoline, AbbVie) remains an IBS-D option but growth is constrained by sphincter of Oddi spasm risk and prescribing restrictions. No major 2026 news found. No significant Lotronex (alosetron) news in the last 72 hours.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="story-card">
-        <div class="story-card-header" onclick="toggle(this)">
-          <span class="section-label">Patent &amp; Legal Watch</span>
-          <span class="chevron">&#9660;</span>
-        </div>
-        <div class="story-card-body">
-          <ul>
-            <li><strong>Amneal ANDA — Litigation Ongoing:</strong> Amneal Pharmaceuticals received tentative FDA approval for rifaximin 550mg (IBS-D reference) in January 2025, blocked by active litigation. Bausch filed suit in 2024, triggering the 30-month ANDA stay. No court ruling issued in the past 72 hours. Full approval would require litigation resolution; earliest realistic generic entry remains ~2028–2029. <a href="https://www.ajmc.com/view/fda-grants-tentative-approval-to-generic-version-of-rifaximin-for-ibs-d" target="_blank">AJMC &#8599;</a> | <a href="https://drugstorenews.com/bausch-health-files-patent-lawsuit-against-amneal-over-generic-xifaxan" target="_blank">Drug Store News &#8599;</a></li>
-            <li><strong>Polymorph Patent Disputes:</strong> Ongoing disputes involving four polymorph patents (&#945;/&#946; rifaximin mixture claims) have been sustained for 840+ days without early dismissal — suggesting the polymorph claims are legally durable. Federal Circuit previously affirmed a rifaximin patent victory for Salix. <a href="https://www.patsnap.com/resources/blog/litigation/federal-circuit-affirms-rifaximin-patent-victory-for-salix-pharmaceuticals-patsnap-eureka/" target="_blank">PatSnap — Federal Circuit Affirms &#8599;</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="story-card">
-        <div class="story-card-header" onclick="toggle(this)">
-          <span class="section-label">Strategic Signals</span>
-          <span class="chevron">&#9660;</span>
-        </div>
-        <div class="story-card-body">
-          <ul>
-            <li><strong>RED-C Failure Creates HE Prevention Vacuum — Watch Competitors:</strong> No therapy is approved for primary HE prevention in cirrhosis. The RED-C failure doesn't open this space to Xifaxan (wrong indication), but it does signal the difficulty of proving prevention. Pipeline players (VE303, GR3027, microbiota approaches) may accelerate investment into this unmet need. Worth tracking whether any of these pivot toward IND/Phase 2 urgency.</li>
-            <li><strong>ACG Guideline Favorable — But Conditional Language Limits Formulary Leverage:</strong> The new ACG guideline reinforces rifaximin's role in HE management, but the conditional recommendation language (vs. a strong recommendation) for outpatient recurrent OHE could limit payer leverage. Salix's market access team should be engaging payers on this language gap now, especially with generics pending.</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- WEEKLY PANEL -->
-  <div class="panel" id="panel-weekly">
-    <div class="day-block">
-      <div class="day-header">
-        <div class="day-label">May 25 – 31, 2026 <span class="weekday">Weekly Digest</span></div>
-      </div>
-
-      <div class="story-card open">
-        <div class="story-card-header" onclick="toggle(this)">
-          <span class="section-label">This Week in Bausch Health</span>
-          <span class="chevron">&#9660;</span>
-        </div>
-        <div class="story-card-body">
-          <ul>
-            <li><strong>Bausch Health beats Q1 2026 estimates — 12th consecutive quarter of growth.</strong> Revenue of $2.52B (vs. $2.42B estimate), EPS $0.78 vs. $0.68 forecast, EBITDA up 27% YoY. Full-year guidance at $5.25–$5.4B. Solta and Salix called out as key drivers. For BVL: a client in strong financial health is more likely to invest in marketing programs — use this as context going into mid-year scope conversations.</li>
-            <li><strong>Rifaximin-SSD Phase 3 failure — $1.4B goodwill impairment on Salix.</strong> Both RED-C trials missed their primary endpoint (delaying HE onset in cirrhosis patients). With that pipeline gone, Salix's growth story narrows to defending existing Xifaxan share through 2028 before authorized generics enter. Any Xifaxan campaigns we run in the next 18 months are brand-defense plays, not growth plays. Scope accordingly.</li>
-            <li><strong>PreserVision AREDS3 launches nationally — major consumer marketing moment.</strong> The new B-vitamin formula is now in Walmart, Target, Walgreens, and Amazon with full national retail placement expected by June. Backed by 20+ clinical studies. Worth monitoring whether BVL is positioned on any related work — if not, it may be a conversation to have.</li>
-            <li><strong>Solta Medical earns AAA Trademark Certification for Thermage in China.</strong> Following the December 2025 Shibo acquisition, Solta now has direct distribution and brand protection in China's aesthetic device market. Q1 revenues up 25% YoY with Asia Pacific leading. Watch for increased investment in HCP and consumer content around Thermage globally.</li>
-            <li><strong>Xifaxan generic entry: 18–24 month window.</strong> Teva, Sun, and Sandoz are authorized for 2028 entry. Amneal has tentative FDA approval and is in active litigation. The Amneal case outcome is the key variable — any settlement or court ruling signals the start of the brand's final cycle. BVL should factor this timeline into any multi-year Xifaxan strategy conversations with the client.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="story-card open">
-        <div class="story-card-header" onclick="toggle(this)">
-          <span class="section-label">This Week in AI for BVL</span>
-          <span class="chevron">&#9660;</span>
-        </div>
-        <div class="story-card-body">
-          <ul>
-            <li><strong>AI is now the first filter for health content — most agencies aren't tracking it.</strong> Google AI Overviews now appear in 25% of all searches. Only 22% of marketing teams track AI search visibility. For pharma and health brands, HCPs and patients increasingly get their first answer from an AI summary, not a search result. BVL should be advising clients on AI-visible content strategy as a distinct service — this is a near-term revenue conversation.</li>
-            <li><strong>AI-powered MLR review is compressing pharma content cycles.</strong> Tools now include automated reference anchoring, local regulatory checks (including PAAB), and differentiated approval workflows. The pitch for BVL: "AI-assisted, human-reviewed" production means faster campaigns with compliant guardrails — not just cheaper copy. This is how to frame AI use to cautious pharma clients.</li>
-            <li><strong>Claude Managed Agents — Dreaming, Outcomes, Multi-agent Orchestration.</strong> Anthropic's three new features (May 6) are the building blocks of a real BVL internal ops agent: self-improvement from past sessions, goal-directed execution, and specialist sub-agent delegation. This is the architecture for automating brief routing, asset review, and reporting — not just a chatbot upgrade.</li>
-            <li><strong>OpenAI's Ads Manager inside ChatGPT is live.</strong> Advertisers can now manage campaigns directly in ChatGPT, and 87% of AI referral traffic currently flows through it. If clients ask about AI search visibility, a ChatGPT ad strategy is now part of the answer alongside SEO and Google. Awareness-stage only for now, but this will move fast.</li>
-            <li><strong>Adobe Firefly Creative Agent — safer GenAI for regulated clients.</strong> Firefly's IP indemnification makes it a more defensible choice than Midjourney for pharma and consumer health client work. The new Creative Agent orchestrates concept generation, asset production, and brand consistency in one loop. Worth piloting on a low-stakes client deliverable before pitching it.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="story-card">
-        <div class="story-card-header" onclick="toggle(this)">
-          <span class="section-label">Signals Worth Watching</span>
-          <span class="chevron">&#9660;</span>
-        </div>
-        <div class="story-card-body">
-          <ul>
-            <li><strong>Amneal litigation in H2 2026.</strong> A settlement or court scheduling order on Amneal's rifaximin ANDA will signal the actual start of Xifaxan's brand-defense window. Watch for any district court activity — it changes the urgency of long-term Salix campaign planning.</li>
-            <li><strong>PAAB's AI regulatory review model.</strong> PAAB is building its own AI-assisted review process (phased launch ongoing). Canadian pharma agencies that get ahead of this will have a production speed advantage. Monitor the PAAB AI Working Group page; this could affect BVL's compliance workflow within 6�312 months.</li>
-            <li><strong>PreserVision competitor response.</strong> ARGDS3's launch into national retail will prompt competing AMD supplement brands to respond. If BVL has B+L OTC work in scope, watch for competitive positioning shifts in H2 2026.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="story-card">
-        <div class="story-card-header" onclick="toggle(this)">
-          <span class="section-label">Recommended Action</span>
-          <span class="chevron">&#9660;</span>
-        </div>
-        <div class="story-card-body">
-          <ul>
-            <li><strong>Start an AI search visibility conversation with one or two clients before June 15.</strong> Use the audit prompt in the AI brief (or the template version) to generate a client-specific gap analysis in under an hour. The stat that only 22% of marketing teams track AI visibility makes for a sharp opening.</li>
-            <li><strong>Confirm BVL's positioning on any Xifaxan work being planned for+2026–2027.</strong> With the SSD failure and a 2028 generic timeline, any new Xifaxan scope should be scoped as a brand-defense play with a defined end date — not an open-ended campaign. Get alignment on that framing before any estimates go out.</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
+  <div class="panel active" id="panel-bausch"><div class="day-block"><div class="day-header"><div class="day-label">June 4, 2026 <span class="weekday">Thursday</span></div><span class="today-badge">Today</span></div><div class="no-brief"><strong>No brief for today yet</strong>Runs weekdays at 7 AM.</div></div></div>
+  <div class="panel" id="panel-ai"><div class="day-block"><div class="day-header"><div class="day-label">June 4, 2026 <span class="weekday">Thursday</span></div><span class="today-badge">Today</span></div><div class="no-brief"><strong>No brief for today yet</strong>Runs weekdays at 7 AM.</div></div></div>
+  <div class="panel" id="panel-xifaxan"><div class="day-block"><div class="day-header"><div class="day-label">June 4, 2026 <span class="weekday">Thursday</span></div><span class="today-badge">Today</span></div><div class="no-brief"><strong>No brief for today yet</strong>Runs weekdays at 7 AM.</div></div></div>
+  <div class="panel" id="panel-arestin"><div class="day-block"><div class="day-header"><div class="day-label">June 4, 2026 <span class="weekday">Thursday</span></div><span class="today-badge">Today</span></div><div class="no-brief"><strong>No brief for today yet</strong>Runs weekdays at 7 AM.</div></div></div>
+  <div class="panel" id="panel-weekly"><div class="no-brief"><strong>Best Of arrives Fridays</strong>The weekly digest runs every Friday at 7 AM.</div></div>
 </div>
 <div class="footer">
   <span>&#169; Broadview Labs &#183; GM Partner Intelligence System</span>
@@ -381,7 +85,7 @@
 </div>
 <script>
   function switchTab(name) {
-    const names = ['bausch','ai','xifaxan','weekly]'];
+    const names = ['bausch','ai','xifaxan','arestin','weekly'];
     document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', names[i]===name));
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
     document.getElementById('panel-'+name).classList.add('active');
